@@ -2,7 +2,7 @@
   "name": "ok-moderator-admin",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./src/App.tsx",
   "scripts": {
     "start": "parcel ./src/index.html",
     "format": "prettier --write \"src/**/*.{ts,tsx,pcss,json}\"",
