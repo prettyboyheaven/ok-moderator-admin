@@ -1,8 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { GamesList } from "./GamesList";
 
 const App = () => {
-  return <div>h1</div>;
+  return (
+    <div>
+      <GamesList />
+    </div>
+  );
 };
 
 ReactDOM.render(<App />, document.getElementById("root"));
