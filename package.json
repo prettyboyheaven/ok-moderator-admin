@@ -5,7 +5,7 @@
   "main": "./src/App.tsx",
   "scripts": {
     "start": "parcel ./src/index.html",
-    "format": "prettier --write \"src/**/*.{ts,tsx,pcss,json}\"",
+    "format": "prettier --write \"src/**/*.{ts,tsx,pcss,json}\" && prettier --write \"utils/*.ts\"",
     "lint": "tslint --project",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -14,7 +14,8 @@
   "license": "ISC",
   "dependencies": {
     "react": "^16.11.0",
-    "react-dom": "^16.11.0"
+    "react-dom": "^16.11.0",
+    "reset-css": "^5.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.7.0",

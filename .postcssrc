@@ -4,5 +4,8 @@
     "autoprefixer": {
       "grid": true
     }
-  }
+  },
+  includePaths: [
+    "node_modules"
+  ]
 }
