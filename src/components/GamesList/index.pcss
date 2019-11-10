@@ -1,3 +1,36 @@
-.gamesList {
-  background: red;
+.title {
+    composes: mobile-title from '../../styles/fonts.pcss';
+    padding-bottom: 8px;
+}
+
+.description {
+    composes: mobile-description from '../../styles/fonts.pcss';
+    padding-bottom: 16px;
+}
+
+.image {
+    width: 128px;
+    height: 128px;
+    object-fit: cover;
+    composes: m-border-radius from '../../styles/bordres.pcss';
+}
+
+.progress {
+    position: relative;
+    text-align: center;
+    width: 100%;
+    composes: xl-border-radius from '../../styles/bordres.pcss';
+    composes: accent-lightest from '../../styles/colors.pcss';
+    padding: 5px 0;
+    z-index: 1;
+}
+
+.progressLine {
+    position: absolute;
+    top: 0;
+    left: 0;
+    composes: accent from '../../styles/colors.pcss';
+    composes: xl-border-radius from '../../styles/bordres.pcss';
+    height: 100%;
+    z-index: -1;
 }
