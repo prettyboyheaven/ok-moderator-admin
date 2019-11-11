@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./index.pcss";
 import useAxios from "axios-hooks";
 import { ControlPanel } from "../ControlPanel";
+import { getEndpoint } from "../../../utils/getEndpoint";
 
 interface game {
   coverPhotoUrl: string;
@@ -18,7 +19,7 @@ interface game {
 
 export const GamesList = () => {
   const [{ data, loading, error }, refetch] = useAxios(
-    "https://api.ok.ru/fb.do?method=moderation.datasetGetList&format=JSON&application_key=CBALBPBNEBABABABA&sig=e774813f8bacfde9b756e364ba526a0c&access_token=-s-en3A5nBOiicdeNaL9o6f4Obw9H.e1o-Shjze5PeQfKajbL6L-i7E3pXMbl5DdoYtbG1B6L6MDK4d4LdLbp0i3t88"
+    getEndpoint({ method: "moderation.datasetGetList" })
   );
 
   if (loading) {

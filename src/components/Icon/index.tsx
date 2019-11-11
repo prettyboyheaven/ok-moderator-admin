@@ -7,5 +7,5 @@ interface IProps {
 }
 
 export const Icon: FC<IProps> = ({ name }) => {
-    return <Home className={ styles.icon }/>
+  return <Home className={styles.icon} />;
 };

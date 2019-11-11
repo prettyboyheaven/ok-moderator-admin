@@ -9,7 +9,7 @@ export const Header = () => {
 
   return (
     <header className={styles.header}>
-      <Link content="Разметка" withIcon={ true } name='home' />
+      <Link content="Разметка" withIcon={true} name="home" />
       <Button content="Создать" clickHandler={() => setOpen(!isOpen)} />
       {isOpen && <CreationMenu className={styles.headerCreationMenu} />}
     </header>

@@ -1,13 +1,9 @@
-import React, { FC, useState } from "react";
+import React, { FC, useContext } from "react";
 import styles from "./index.pcss";
 import { joinClasses } from "../../../utils/joinClasses";
 import { Button } from "../Button";
 
-const filters = ["Новые", "Запущенные", "Остановленные", "Завершенные"];
-
 export const Filters: FC = () => {
-  const [isActive, setActive] = useState(filters[1]);
-
   const renderedFilters = filters.map(filter => {
     const filterClassName =
       isActive === filter
