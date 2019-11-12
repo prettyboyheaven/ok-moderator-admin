@@ -1,28 +1,27 @@
-import React, { useState } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
-import { GamesList } from "./components/GamesList";
-import { Header } from "./components/Header";
-import { Filters } from "./components/Filters";
-
-const filters = ["Новые", "Запущенные", "Остановленные", "Завершенные"];
-
-const FiltersContext = React.createContext({
-  filters,
-  activeFilter: filters[1]
-});
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Games } from "./pages/Games";
+import { Edit } from "./pages/Edit";
 
 const App = () => {
-  const [activeFilter, setActive] = useState(filters[1]);
-
   return (
-    <div>
-      <Header />
-      <FiltersContext.Provider value={{ filters, activeFilter }}>
-        {/*<Filters />*/}
-        <GamesList />
-      </FiltersContext.Provider>
-    </div>
+    <>
+      <Switch>
+        <Route path="/edit/:id">
+          <Edit />
+        </Route>
+        <Route path="/">
+          <Games />
+        </Route>
+      </Switch>
+    </>
   );
 };
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(
+  <Router>
+    <App />
+  </Router>,
+  document.getElementById("root")
+);

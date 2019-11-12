@@ -1,11 +1,24 @@
+.game {
+  display: grid;
+  grid-template-areas:
+    "name name"
+    "image stats"
+    "progress progress";
+  grid-template-columns: 128px 1fr;
+  grid-gap: 10px;
+}
+
 .title {
+  composes: title from "../../styles/fonts.pcss";
   composes: mobile-title from "../../styles/fonts.pcss";
   padding-bottom: 8px;
 }
 
 .description {
   composes: mobile-description from "../../styles/fonts.pcss";
-  padding-bottom: 16px;
+  padding-bottom: 10px;
+  display: grid;
+  grid-template-columns: 20px 1fr;
 }
 
 .image {
@@ -13,6 +26,7 @@
   height: 128px;
   object-fit: cover;
   composes: m-border-radius from "../../styles/bordres.pcss";
+  grid-area: image;
 }
 
 .progress {
@@ -23,6 +37,7 @@
   composes: accent-lightest from "../../styles/colors.pcss";
   padding: 5px 0;
   z-index: 1;
+  grid-area: progress;
 }
 
 .progressLine {
@@ -33,4 +48,13 @@
   composes: xl-border-radius from "../../styles/bordres.pcss";
   height: 100%;
   z-index: -1;
+  max-width: 100%;
+}
+
+.name {
+  grid-area: name;
+}
+
+.stats {
+  grid-area: stats;
 }
