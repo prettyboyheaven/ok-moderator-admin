@@ -75,6 +75,10 @@ const GameProgress = ({ processedRecords, totalRecords }: GameProgress) => {
 };
 
 export const GamesList = ({ games, activeFilter }: IProps) => {
+  if (!games.length) {
+    return null;
+  }
+
   const renderGames = games
     .filter((game: game) => game.state === activeFilter)
     .map((game: game) => {
