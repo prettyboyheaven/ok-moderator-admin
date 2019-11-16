@@ -4,6 +4,19 @@
   position: relative;
 }
 
+.homeLink {
+  composes: title from "../../styles/fonts.pcss";
+  composes: accent-darkest from "../../styles/colors.pcss";
+  composes: mobile-title-large from "../../styles/fonts.pcss";
+  text-decoration: none;
+}
+
+.homeLinkText {
+  font-weight: bold;
+  display: grid;
+  grid-auto-flow: column;
+}
+
 .headerCreationMenu {
   position: absolute;
   right: 0;

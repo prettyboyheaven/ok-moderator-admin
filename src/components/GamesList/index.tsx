@@ -1,8 +1,6 @@
 import React from "react";
 import styles from "./index.pcss";
-import useAxios from "axios-hooks";
 import { ControlPanel } from "../ControlPanel";
-import { getEndpoint } from "../../../utils/getEndpoint";
 import { Icon } from "../Icon";
 import { PRIORITY, ID, TYPE } from "../../constants/icons";
 
@@ -17,6 +15,7 @@ interface game {
   };
   totalRecords: string;
   processedRecords: string;
+  state: string;
 }
 
 interface GameName {
@@ -35,10 +34,15 @@ interface GameProgress {
   totalRecords: string;
 }
 
+interface IProps {
+  games: game[];
+  activeFilter: string;
+}
+
 const GameName = ({ name, taskDescription }: GameName) => (
   <div className={styles.name}>
     <h1 className={styles.title}>{name}</h1>
-    <p>{taskDescription}</p>
+    {taskDescription && <p>{taskDescription}</p>}
   </div>
 );
 
@@ -70,19 +74,9 @@ const GameProgress = ({ processedRecords, totalRecords }: GameProgress) => {
   );
 };
 
-export const GamesList = () => {
-  const [{ data, loading, error }, refetch] = useAxios(
-    getEndpoint({ method: "moderation.datasetGetList" })
-  );
-
-  if (loading) {
-    return <p>...loading</p>;
-  }
-
-  const { datasets: games } = data;
-
+export const GamesList = ({ games, activeFilter }: IProps) => {
   const renderGames = games
-    .filter(game => game.state === "ACTIVE")
+    .filter((game: game) => game.state === activeFilter)
     .map((game: game) => {
       const {
         coverPhotoUrl,

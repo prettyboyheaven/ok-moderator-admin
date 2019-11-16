@@ -5,7 +5,30 @@ import Id from "../../icons/id.svg";
 import Type from "../../icons/type.svg";
 import Edit from "../../icons/edit.svg";
 import Charts from "../../icons/charts.svg";
-import { HOME, PRIORITY, ID, TYPE, EDIT, CHARTS } from "../../constants/icons";
+import Play from "../../icons/play.svg";
+import Pause from "../../icons/pause.svg";
+import Trash from "../../icons/trash.svg";
+import Rules from "../../icons/rules.svg";
+import Traps from "../../icons/traps.svg";
+import Download from "../../icons/download.svg";
+import TriangleClosed from "../../icons/triangleClosed.svg";
+import TriangleOpened from "../../icons/TriangleOpened.svg";
+import {
+  HOME,
+  PRIORITY,
+  ID,
+  TYPE,
+  EDIT,
+  CHARTS,
+  PLAY,
+  PAUSE,
+  TRASH,
+  RULES,
+  TRAPS,
+  DOWNLOAD,
+  TRIANGLE_CLOSED,
+  TRIANGLE_OPENED
+} from "../../constants/icons";
 import styles from "./index.pcss";
 
 interface IProps {
@@ -15,7 +38,7 @@ interface IProps {
 export const Icon: FC<IProps> = ({ name }) => {
   switch (name) {
     case HOME: {
-      return <Home className={styles.icon} />;
+      return <Home className={styles.iconDarkest} />;
     }
     case PRIORITY: {
       return <Priority className={styles.icon} />;
@@ -27,10 +50,34 @@ export const Icon: FC<IProps> = ({ name }) => {
       return <Type className={styles.icon} />;
     }
     case EDIT: {
-      return <Edit className={styles.icon} />;
+      return <Edit />;
     }
     case CHARTS: {
       return <Charts className={styles.icon} />;
+    }
+    case PLAY: {
+      return <Play className={styles.icon} />;
+    }
+    case PAUSE: {
+      return <Pause className={styles.icon} />;
+    }
+    case TRASH: {
+      return <Trash className={styles.icon} />;
+    }
+    case RULES: {
+      return <Rules className={styles.icon} />;
+    }
+    case TRAPS: {
+      return <Traps className={styles.icon} />;
+    }
+    case DOWNLOAD: {
+      return <Download className={styles.icon} />;
+    }
+    case TRIANGLE_CLOSED: {
+      return <TriangleClosed />;
+    }
+    case TRIANGLE_OPENED: {
+      return <TriangleOpened />;
     }
     default: {
       return null;

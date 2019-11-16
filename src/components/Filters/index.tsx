@@ -1,29 +1,38 @@
-import React, { FC, useContext } from "react";
+import React, { FC } from "react";
+import classNames from "classnames";
 import styles from "./index.pcss";
-import { joinClasses } from "../../../utils/joinClasses";
 import { Button } from "../Button";
 
-export const Filters: FC = () => {
-  const renderedFilters = filters.map(filter => {
-    const filterClassName =
-      isActive === filter
-        ? joinClasses(styles.filter, styles.filterActive)
-        : styles.filter;
+interface IProps {
+  filters: { [key: string]: string };
+  activeFilter: string;
+  setActiveFilter: (filter: string) => void;
+}
+
+export const Filters: FC<IProps> = ({
+  filters,
+  activeFilter,
+  setActiveFilter
+}: IProps) => {
+  const filtersKeys = Object.keys(filters);
+
+  const renderFilters = filtersKeys.map((filter: string) => {
+    const value = filters[filter];
+
+    const filterClassNames = classNames(styles.filter, {
+      [styles.activeFilter]: filter === activeFilter
+    });
 
     return (
-      <li key={filter}>
-        <Button
-          className={filterClassName}
-          content={filter}
-          clickHandler={() => setActive(filter)}
-        />
+      <li className={filterClassNames} key={filter}>
+        <Button clickHandler={() => setActiveFilter(filter)}>{value}</Button>
       </li>
     );
   });
 
   return (
     <nav>
-      <ul className={styles.filtersList}>{renderedFilters}</ul>
+      <ul className={styles.filtersList}>{renderFilters}</ul>
     </nav>
   );
 };

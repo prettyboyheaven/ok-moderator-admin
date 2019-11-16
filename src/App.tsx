@@ -3,6 +3,8 @@ import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Games } from "./pages/Games";
 import { Edit } from "./pages/Edit";
+import { Rules } from "./pages/Rules";
+import { Traps } from "./pages/Traps";
 
 const App = () => {
   return (
@@ -10,6 +12,12 @@ const App = () => {
       <Switch>
         <Route path="/edit/:id">
           <Edit />
+        </Route>
+        <Route path="/rules/:id">
+          <Rules />
+        </Route>
+        <Route path="/traps/:id">
+          <Traps />
         </Route>
         <Route path="/">
           <Games />

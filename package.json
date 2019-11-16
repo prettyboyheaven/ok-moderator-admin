@@ -14,7 +14,9 @@
   "license": "ISC",
   "dependencies": {
     "@svgr/parcel-plugin-svgr": "^4.3.3",
+    "@types/classnames": "^2.2.9",
     "babel-runtime": "^6.26.0",
+    "classnames": "^2.2.6",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-router-dom": "^5.1.2",
@@ -26,7 +28,6 @@
     "@babel/plugin-transform-runtime": "^7.6.2",
     "@babel/polyfill": "^7.7.0",
     "@babel/preset-react": "^7.7.0",
-    "@types/reach__router": "^1.2.6",
     "@types/react": "^16.9.11",
     "@types/react-dom": "^16.9.4",
     "@types/react-router-dom": "^5.1.2",

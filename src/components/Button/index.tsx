@@ -1,15 +1,27 @@
-import React, { FC } from "react";
+import React, { FC, ReactNode } from "react";
+import styles from "./index.pcss";
+import classNames from "classnames";
 
 interface IProps {
-  content: string;
   className?: string;
   clickHandler: () => void;
+  children: ReactNode | string;
+  isAccent?: boolean;
 }
 
-export const Button: FC<IProps> = ({ content, clickHandler, className }) => {
+export const Button: FC<IProps> = ({
+  children,
+  clickHandler,
+  className,
+  isAccent
+}) => {
+  const buttonClassName = classNames(styles.button, className, {
+    [styles.buttonAccent]: isAccent
+  });
+
   return (
-    <button className={className} onClick={clickHandler}>
-      {content}
+    <button className={buttonClassName} onClick={clickHandler}>
+      {children}
     </button>
   );
 };
