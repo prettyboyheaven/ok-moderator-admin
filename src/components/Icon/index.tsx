@@ -13,6 +13,9 @@ import Traps from "../../icons/traps.svg";
 import Download from "../../icons/download.svg";
 import TriangleClosed from "../../icons/triangleClosed.svg";
 import TriangleOpened from "../../icons/TriangleOpened.svg";
+import Camera from "../../icons/Camera.svg";
+import CheckboxSelected from "../../icons/CheckboxSelected.svg";
+import Checkbox from "../../icons/Checkbox.svg";
 import {
   HOME,
   PRIORITY,
@@ -27,7 +30,10 @@ import {
   TRAPS,
   DOWNLOAD,
   TRIANGLE_CLOSED,
-  TRIANGLE_OPENED
+  TRIANGLE_OPENED,
+  CAMERA,
+  CHECKBOX,
+  CHECKBOX_SELECTED
 } from "../../constants/icons";
 import styles from "./index.pcss";
 
@@ -78,6 +84,15 @@ export const Icon: FC<IProps> = ({ name }) => {
     }
     case TRIANGLE_OPENED: {
       return <TriangleOpened />;
+    }
+    case CAMERA: {
+      return <Camera />;
+    }
+    case CHECKBOX_SELECTED: {
+      return <CheckboxSelected />;
+    }
+    case CHECKBOX: {
+      return <Checkbox />;
     }
     default: {
       return null;

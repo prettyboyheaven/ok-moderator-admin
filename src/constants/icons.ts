@@ -12,3 +12,6 @@ export const TRAPS = "TRAPS";
 export const DOWNLOAD = "DOWNLOAD";
 export const TRIANGLE_CLOSED = "TRIANGLE_CLOSED";
 export const TRIANGLE_OPENED = "TRIANGLE_OPENED";
+export const CAMERA = "CAMERA";
+export const CHECKBOX_SELECTED = "CHECKBOX_SELECTED";
+export const CHECKBOX = "CHECKBOX";

@@ -3,20 +3,7 @@ import styles from "./index.pcss";
 import { ControlPanel } from "../ControlPanel";
 import { Icon } from "../Icon";
 import { PRIORITY, ID, TYPE } from "../../constants/icons";
-
-interface game {
-  coverPhotoUrl: string;
-  name: string;
-  taskDescription: string;
-  priority: string;
-  id: string;
-  labelingStrategy: {
-    type?: string;
-  };
-  totalRecords: string;
-  processedRecords: string;
-  state: string;
-}
+import { Game } from "../../interfaces/game";
 
 interface GameName {
   name: string;
@@ -35,7 +22,7 @@ interface GameProgress {
 }
 
 interface IProps {
-  games: game[];
+  games: Game[];
   activeFilter: string;
 }
 
@@ -80,8 +67,8 @@ export const GamesList = ({ games, activeFilter }: IProps) => {
   }
 
   const renderGames = games
-    .filter((game: game) => game.state === activeFilter)
-    .map((game: game) => {
+    .filter((game: Game) => game.state === activeFilter)
+    .map((game: Game) => {
       const {
         coverPhotoUrl,
         name,
@@ -108,7 +95,7 @@ export const GamesList = ({ games, activeFilter }: IProps) => {
             processedRecords={processedRecords}
             totalRecords={totalRecords}
           />
-          <ControlPanel id={id} />
+          <ControlPanel game={game} />
         </li>
       );
     });

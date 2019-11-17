@@ -15,18 +15,21 @@ import { ExternalLink } from "../ExternalLink";
 import { Button } from "../Button";
 import styles from "./index.pcss";
 
-interface IProps {
-  id: string;
-}
+export const ControlPanel = ({ game }) => {
+  const { id } = game;
 
-export const ControlPanel = ({ id }: IProps) => {
   const chartsUrl = `https://charts.odkl.ru/reports?id=1330587&ModerationArenaOpStatParam1=${id}&filter=true`;
 
   return (
     <nav className={styles.nav}>
       <ul className={styles.list}>
         <li>
-          <Link to={{ pathname: `/edit/${id}` }}>
+          <Link
+            to={{
+              pathname: `/edit/${id}`,
+              state: { game }
+            }}
+          >
             <Icon name={EDIT} />
           </Link>
         </li>

@@ -10,9 +10,7 @@ const App = () => {
   return (
     <>
       <Switch>
-        <Route path="/edit/:id">
-          <Edit />
-        </Route>
+        <Route path="/edit/:id" component={Edit} />
         <Route path="/rules/:id">
           <Rules />
         </Route>
