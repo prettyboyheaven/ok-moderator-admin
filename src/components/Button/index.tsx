@@ -1,22 +1,28 @@
-import React, { FC, ReactNode } from "react";
+import React, { FC, ReactNode, MouseEvent } from "react";
 import styles from "./index.pcss";
 import classNames from "classnames";
 
 interface IProps {
   className?: string;
-  clickHandler: () => void;
+  clickHandler: (event: MouseEvent<HTMLButtonElement>) => void;
   children: ReactNode | string;
   isAccent?: boolean;
+  isAccentBackground?: boolean;
+  isSubordinateBackground?: boolean;
 }
 
 export const Button: FC<IProps> = ({
   children,
   clickHandler,
   className,
-  isAccent
+  isAccent,
+  isAccentBackground,
+  isSubordinateBackground
 }) => {
   const buttonClassName = classNames(styles.button, className, {
-    [styles.buttonAccent]: isAccent
+    [styles.accent]: isAccent,
+    [styles.accentBackground]: isAccentBackground,
+    [styles.subordinateBackground]: isSubordinateBackground
   });
 
   return (

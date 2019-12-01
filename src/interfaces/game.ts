@@ -5,7 +5,10 @@ export interface Game {
   priority: string;
   id: string;
   labelingStrategy: {
-    type?: string;
+    type: string;
+    tagMap: {
+      [key: string]: string;
+    }
   };
   totalRecords: string;
   processedRecords: string;
@@ -17,4 +20,11 @@ export interface Game {
   quorumPercent: number;
   penaltyAltTag: number;
   minimalNumVotes: number;
+  streaming: boolean;
+  checkExternalImageAvailability: boolean;
+  checkPrivacyEnabled: boolean;
+  trainingEnabled: boolean;
+  amountOfTrainTasks: number;
+  percentToPass: number;
+  multiSelectEnabled: boolean;
 }

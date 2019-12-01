@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import React, {FC, useState} from "react";
 import { Icon } from "../Icon";
 import { CHECKBOX, CHECKBOX_SELECTED } from "../../constants/icons";
 import styles from "./index.pcss";
 
 interface IProps {
   title: string;
+  clickHandler: () => void;
+  isChecked: boolean;
 }
 
-export const Checkbox = ({ title }: IProps) => {
-  const [isChecked, setCheck] = useState(false);
+export const Checkbox: FC<IProps> = ({ title, clickHandler, isChecked }: IProps) => {
 
   const icon = isChecked ? (
     <Icon name={CHECKBOX_SELECTED} />
@@ -21,7 +22,7 @@ export const Checkbox = ({ title }: IProps) => {
       className={styles.checkbox}
       onClick={e => {
         e.preventDefault();
-        setCheck(!isChecked);
+        clickHandler();
       }}
     >
       {icon}

@@ -1,24 +1,25 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React, { Dispatch, ReducerAction, SetStateAction } from "react";
 import styles from "./index.pcss";
 
 interface IProps {
-  name: string;
+  name?: string;
   value: string | number;
   placeholder: string;
-  handler: Dispatch<SetStateAction<string>> | Dispatch<SetStateAction<number>>;
+  type: string;
+  changeHandler: (value: string) => void;
 }
 
-export const Fieldset = ({ name, value, handler, placeholder }: IProps) => {
-  const typeOfValue = typeof value === "string" ? "text" : "number";
-
+export const Fieldset = ({ name, value, changeHandler, placeholder, type }: IProps) => {
   return (
     <fieldset>
-      <legend className={styles.title}>{name}</legend>
+      {name && <legend className={styles.title}>{name}</legend>}
       <input
         className={styles.input}
-        type={typeOfValue}
+        type={type}
         value={value}
-        onChange={e => handler(e.target.value)}
+        onChange={e => {
+          changeHandler(e.target.value);
+        }}
         placeholder={placeholder}
       />
     </fieldset>

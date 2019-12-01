@@ -1,9 +1,25 @@
 .button {
-  padding: 0;
   composes: button from "../../styles/fonts.pcss";
   composes: mobile-button from "../../styles/fonts.pcss";
+  padding: 0;
 }
 
-.buttonAccent {
+.accent {
   composes: accent-color from "../../styles/colors.pcss";
+}
+
+.accentBackground, .subordinateBackground {
+  composes: xxl-border-radius from "../../styles/borders.pcss";
+  border: none;
+  padding: 5px 15px;
+}
+
+.accentBackground {
+  composes: accent from "../../styles/colors.pcss";
+  composes: default-white-color from "../../styles/colors.pcss";
+}
+
+.subordinateBackground {
+  composes: subordinate from "../../styles/colors.pcss";
+  composes: subordinate-color from "../../styles/colors.pcss";
 }
