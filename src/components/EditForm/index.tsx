@@ -8,6 +8,7 @@ import { Footer } from "../Footer";
 import { Button } from "../Button";
 import { Icon } from "../Icon";
 import { TRASH } from "../../constants/icons";
+import { tagsFromArray, tagsToArray } from "../../../utils/transformTags";
 
 interface IProps {
   game: Game;
@@ -37,6 +38,9 @@ type Action =
   | { type: "SET_PERCENT_TO_PASS"; payload: { percentToPass: string } }
   | { type: "SET_MULTI_SELECT_ENABLED" }
   | { type: "SET_CATEGORY_CODE"; payload: { categoryCode: string; id: number } }
+  | { type: "SET_CATEGORY_VALUE"; payload: { categoryValue: string; id: number } }
+  | { type: "DELETE_CATEGORY"; payload: { id: number } }
+  | { type: "ADD_CATEGORY" }
   | { type: "RESET"; payload: { game: Game } };
 
 const reducer = (state: Game, action: Action): Game => {
@@ -102,14 +106,52 @@ const reducer = (state: Game, action: Action): Game => {
       return { ...state, multiSelectEnabled: !state.multiSelectEnabled };
     }
     case "SET_CATEGORY_CODE": {
-      console.log(action.payload.categoryCode);
       console.log(action.payload.id);
+      const tags = tagsToArray(state.labelingStrategy.tagMap);
+      const tagMap = tagsFromArray(
+        tags.map(item => {
+          if (item.id === action.payload.id) {
+            return {
+              ...item,
+              categoryCode: action.payload.categoryCode
+            };
+          }
+          return item;
+        })
+      );
+      return { ...state, labelingStrategy: { type: "CLASSIFICATION", tagMap } };
+    }
+    case "SET_CATEGORY_VALUE": {
+      const tags = tagsToArray(state.labelingStrategy.tagMap);
+      const tagMap = tagsFromArray(
+        tags.map(item => {
+          if (item.id === action.payload.id) {
+            return {
+              ...item,
+              categoryValue: action.payload.categoryValue
+            };
+          }
+          return item;
+        })
+      );
+      return { ...state, labelingStrategy: { type: "CLASSIFICATION", tagMap } };
+    }
+    case "DELETE_CATEGORY": {
+      const tags = tagsToArray(state.labelingStrategy.tagMap);
+      const tagMap = tagsFromArray(tags.filter(tag => tag.id !== action.payload.id));
 
-      const newState = { ...state, labelingStrategy: { tagMap: {
-              ...state.labelingStrategy.tagMap
-          } } };
-
-      return { ...state };
+      return { ...state, labelingStrategy: { type: "CLASSIFICATION", tagMap } };
+    }
+    case "ADD_CATEGORY": {
+      const tags = tagsToArray(state.labelingStrategy.tagMap);
+      console.log(tags);
+      const newCategory = {
+        categoryCode: "",
+        categoryValue: "",
+        id: tags.length + 1
+      };
+      const tagMap = tagsFromArray([...tags, newCategory]);
+      return { ...state, labelingStrategy: { type: "CLASSIFICATION", tagMap } };
     }
     case "RESET": {
       return init(action.payload.game);
@@ -154,6 +196,14 @@ export const EditForm: FC<IProps> = ({ game }: IProps) => {
       type: "SET_CATEGORY_CODE",
       payload: { categoryCode, id }
     });
+  const setCategoryValue = (categoryValue: string, id: number) =>
+    dispatch({
+      type: "SET_CATEGORY_VALUE",
+      payload: { categoryValue, id }
+    });
+  const deleteCategory = (id: number) => dispatch({ type: "DELETE_CATEGORY", payload: { id } });
+  const addCategory = () => dispatch({ type: "ADD_CATEGORY" });
+
   const reset = () => dispatch({ type: "RESET", payload: { game } });
 
   const {
@@ -178,29 +228,19 @@ export const EditForm: FC<IProps> = ({ game }: IProps) => {
 
   const ids = playerIds.toString();
 
-  const tagsToArray = (tags: Game["labelingStrategy"]["tagMap"]) => {
-    return Object.keys(tags).map((tag, index) => ({
-      categoryCode: tag,
-      categoryValue: tags[tag],
-      id: index
-    }));
-  };
-
-  const tagsFromArray = (tagsArray: {categoryCode: string; categoryValue: string; id: number}[]) => {
-    return tagsArray.reduce((result: Record<string, string>, { categoryCode, categoryValue }) => {
-      result[categoryCode] = categoryValue;
-      return result;
-    }, {});
-  };
-
-  console.log(tagsFromArray(tagsToArray(labelingStrategy.tagMap)));
+  console.log(tagsToArray(labelingStrategy.tagMap));
 
   const categories = tagsToArray(labelingStrategy.tagMap).map(tag => {
     const { categoryCode, categoryValue, id } = tag;
 
     return (
       <li key={id} className={styles.category}>
-        <Button clickHandler={() => null}>
+        <Button
+          clickHandler={(e: MouseEvent<HTMLButtonElement>) => {
+            e.preventDefault();
+            deleteCategory(id);
+          }}
+        >
           <Icon name={TRASH} />
         </Button>
         <Fieldset
@@ -209,7 +249,12 @@ export const EditForm: FC<IProps> = ({ game }: IProps) => {
           type="text"
           changeHandler={value => setCategoryCode(value, id)}
         />
-        <Fieldset value={categoryValue} placeholder="Название" type="text" changeHandler={} />
+        <Fieldset
+          value={categoryValue}
+          placeholder="Название"
+          type="text"
+          changeHandler={value => setCategoryValue(value, id)}
+        />
       </li>
     );
   });
@@ -309,7 +354,14 @@ export const EditForm: FC<IProps> = ({ game }: IProps) => {
         <Checkbox title="Несколько категорий" clickHandler={setMultiSelectEnabled} isChecked={multiSelectEnabled} />
         <h2>Категории</h2>
         <ul>{categories}</ul>
-        <Button>Добавить категорию</Button>
+        <Button
+          clickHandler={(e: MouseEvent<HTMLButtonElement>) => {
+            e.preventDefault();
+            addCategory();
+          }}
+        >
+          Добавить категорию
+        </Button>
       </div>
       <Footer>
         <Button
