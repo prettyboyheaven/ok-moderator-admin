@@ -18,14 +18,14 @@ export const Games = () => {
   }
 
   const { datasets: games } = data;
-
-  return (
+    return (
     <>
       <Header />
       <Filters
         filters={filters}
         activeFilter={activeFilter}
         setActiveFilter={setActiveFilter}
+        games={ games }
       />
       <GamesList games={games} activeFilter={activeFilter} />
     </>

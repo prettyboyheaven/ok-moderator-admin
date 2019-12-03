@@ -3,10 +3,20 @@
   grid-template-areas:
     "name name"
     "image stats"
-    "progress progress";
+    "progress progress"
+    "control-panel control-panel";
   grid-template-columns: 128px 1fr;
   grid-gap: 10px;
   padding-bottom: 45px;
+}
+
+@media (min-width: 896px) {
+  .game {
+    grid-template-columns: 128px 1fr 1fr;
+    grid-template-areas:
+      "image name progress"
+      "image stats control-panel";
+  }
 }
 
 .game:last-child {
