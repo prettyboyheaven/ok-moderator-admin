@@ -1,3 +1,5 @@
+import {ITagsAsArray} from "../types/tags";
+
 export interface Game {
   coverPhotoUrl: string;
   name: string;
@@ -27,4 +29,5 @@ export interface Game {
   amountOfTrainTasks: number;
   percentToPass: number;
   multiSelectEnabled: boolean;
+  tags?: ITagsAsArray;
 }
