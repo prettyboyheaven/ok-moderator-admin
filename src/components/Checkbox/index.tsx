@@ -2,6 +2,7 @@ import React, {FC, useState} from "react";
 import { Icon } from "../Icon";
 import { CHECKBOX, CHECKBOX_SELECTED } from "../../constants/icons";
 import styles from "./index.pcss";
+import { Button } from "../Button";
 
 interface IProps {
   title: string;
@@ -18,15 +19,15 @@ export const Checkbox: FC<IProps> = ({ title, clickHandler, isChecked }: IProps)
   );
 
   return (
-    <button
+    <Button
       className={styles.checkbox}
-      onClick={e => {
+      clickHandler={e => {
         e.preventDefault();
         clickHandler();
       }}
     >
       {icon}
       <h1 className={styles.title}>{title}</h1>
-    </button>
+    </Button>
   );
 };

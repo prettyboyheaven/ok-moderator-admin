@@ -16,6 +16,7 @@ import TriangleOpened from "../../icons/TriangleOpened.svg";
 import Camera from "../../icons/Camera.svg";
 import CheckboxSelected from "../../icons/CheckboxSelected.svg";
 import Checkbox from "../../icons/Checkbox.svg";
+import Plus from "../../icons/Plus.svg";
 import {
   HOME,
   PRIORITY,
@@ -33,7 +34,8 @@ import {
   TRIANGLE_OPENED,
   CAMERA,
   CHECKBOX,
-  CHECKBOX_SELECTED
+  CHECKBOX_SELECTED,
+  PLUS
 } from "../../constants/icons";
 import styles from "./index.pcss";
 
@@ -93,6 +95,9 @@ export const Icon: FC<IProps> = ({ name }) => {
     }
     case CHECKBOX: {
       return <Checkbox />;
+    }
+    case PLUS: {
+      return <Plus />;
     }
     default: {
       return null;

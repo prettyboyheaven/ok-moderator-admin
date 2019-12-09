@@ -15,3 +15,4 @@ export const TRIANGLE_OPENED = "TRIANGLE_OPENED";
 export const CAMERA = "CAMERA";
 export const CHECKBOX_SELECTED = "CHECKBOX_SELECTED";
 export const CHECKBOX = "CHECKBOX";
+export const PLUS = "PLUS";

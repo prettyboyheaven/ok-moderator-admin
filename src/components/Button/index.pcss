@@ -1,17 +1,17 @@
 .button {
-  composes: button from "../../styles/fonts.pcss";
   composes: mobile-button from "../../styles/fonts.pcss";
   padding: 0;
   color: inherit;
   border: none;
   cursor: pointer;
+  background-color: transparent;
 }
 
 .accent {
   composes: accent-color from "../../styles/colors.pcss";
 }
 
-.accentBackground, .subordinateBackground {
+.accentBackground, .subordinateBackground, .accentLightBackground {
   composes: xxl-border-radius from "../../styles/borders.pcss";
   border: none;
   padding: 5px 15px;
@@ -20,6 +20,11 @@
 .accentBackground {
   composes: accent from "../../styles/colors.pcss";
   composes: default-white-color from "../../styles/colors.pcss";
+}
+
+.accentLightBackground {
+  composes: accent-color from "../../styles/colors.pcss";
+  composes: accent-lightest from "../../styles/colors.pcss";
 }
 
 .subordinateBackground {

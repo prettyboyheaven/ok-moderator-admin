@@ -7,11 +7,11 @@ import { Checkbox } from "../Checkbox";
 import { Footer } from "../Footer";
 import { Button } from "../Button";
 import { Icon } from "../Icon";
-import { TRASH } from "../../constants/icons";
+import { PLUS, TRASH } from "../../constants/icons";
 import { tagsToArray } from "../../../utils/transformTags";
 import { ITags } from "../../types/tags";
 
-interface IProps {
+interface Props {
   game: Game;
 }
 
@@ -141,7 +141,7 @@ const reducer = (state: Game, action: Action): Game => {
   }
 };
 
-export const EditForm: FC<IProps> = ({ game }: IProps) => {
+export const EditForm: FC<Props> = ({ game }: Props) => {
   const [state, dispatch] = useReducer(reducer, game, init);
 
   const setName = (name: string) => dispatch({ type: "SET_NAME", payload: { name } });
@@ -238,7 +238,7 @@ export const EditForm: FC<IProps> = ({ game }: IProps) => {
   });
 
   return (
-    <form>
+    <form className={styles.form}>
       <div className={styles.bio}>
         <h1 className={styles.title}>Об игре</h1>
         <Image coverPhotoUrl={coverPhotoUrl} className={styles.avatar} />
@@ -312,33 +312,37 @@ export const EditForm: FC<IProps> = ({ game }: IProps) => {
         />
         <Checkbox title="isStreaming" clickHandler={setStreaming} isChecked={streaming} />
         <Checkbox title="isTrainingEnabled" clickHandler={setTrainingEnabled} isChecked={trainingEnabled} />
-        <Fieldset
-          name="amountOfTrainTasks"
-          value={amountOfTrainTasks}
-          placeholder="amountOfTrainTasks"
-          changeHandler={setAmountOfTrainTasks}
-          type="number"
-        />
-        <Fieldset
-          name="gamePercentToPass"
-          value={percentToPass}
-          placeholder="gamePercentToPass"
-          changeHandler={setPercentToPass}
-          type="number"
-        />
+        <div className={styles.settings}>
+          <Fieldset
+            name="amountOfTrainTasks"
+            value={amountOfTrainTasks}
+            placeholder="amountOfTrainTasks"
+            changeHandler={setAmountOfTrainTasks}
+            type="number"
+          />
+          <Fieldset
+            name="gamePercentToPass"
+            value={percentToPass}
+            placeholder="gamePercentToPass"
+            changeHandler={setPercentToPass}
+            type="number"
+          />
+        </div>
       </div>
-      <div>
+      <div className={styles.categories}>
         <h1 className={styles.title}>Категории для разметки</h1>
         <Checkbox title="Несколько категорий" clickHandler={setMultiSelectEnabled} isChecked={multiSelectEnabled} />
-        <h2>Категории</h2>
-        <ul>{categories}</ul>
+        <h2 className={styles.categoriesSubtitle}>Категории</h2>
+        <ul className={styles.categoriesList}>{categories}</ul>
         <Button
+          className={styles.categoriesButton}
           clickHandler={(e: MouseEvent<HTMLButtonElement>) => {
             e.preventDefault();
             addCategory();
           }}
+          isAccentLightBackground={ true }
         >
-          Добавить категорию
+          <Icon name={PLUS} /> Добавить категорию
         </Button>
       </div>
       <Footer>

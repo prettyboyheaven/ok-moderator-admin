@@ -9,6 +9,7 @@ interface IProps {
   isAccent?: boolean;
   isAccentBackground?: boolean;
   isSubordinateBackground?: boolean;
+  isAccentLightBackground?: boolean;
 }
 
 export const Button: FC<IProps> = ({
@@ -17,12 +18,14 @@ export const Button: FC<IProps> = ({
   className,
   isAccent,
   isAccentBackground,
-  isSubordinateBackground
+  isSubordinateBackground,
+  isAccentLightBackground
 }) => {
   const buttonClassName = classNames(styles.button, className, {
     [styles.accent]: isAccent,
     [styles.accentBackground]: isAccentBackground,
-    [styles.subordinateBackground]: isSubordinateBackground
+    [styles.subordinateBackground]: isSubordinateBackground,
+    [styles.accentLightBackground]: isAccentLightBackground
   });
 
   return (
