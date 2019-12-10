@@ -4,6 +4,7 @@ import { ControlPanel } from "../ControlPanel";
 import { Icon } from "../Icon";
 import { PRIORITY, ID, TYPE } from "../../constants/icons";
 import { Game } from "../../interfaces/game";
+import { Image } from "../Image";
 
 interface GameName {
   name: string;
@@ -85,16 +86,9 @@ export const GamesList = ({ games, activeFilter }: IProps) => {
       return (
         <li className={styles.game} key={id}>
           <GameName name={name} taskDescription={taskDescription} />
-          <img
-            className={styles.image}
-            src={coverPhotoUrl}
-            alt={coverPhotoUrl}
-          />
+          <Image className={styles.image} coverPhotoUrl={coverPhotoUrl} />
           <GameStats priority={priority} id={id} type={type} />
-          <GameProgress
-            processedRecords={processedRecords}
-            totalRecords={totalRecords}
-          />
+          <GameProgress processedRecords={processedRecords} totalRecords={totalRecords} />
           <ControlPanel game={game} />
         </li>
       );

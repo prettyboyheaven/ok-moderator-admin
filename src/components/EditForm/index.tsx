@@ -241,7 +241,7 @@ export const EditForm: FC<Props> = ({ game }: Props) => {
     <form className={styles.form}>
       <div className={styles.bio}>
         <h1 className={styles.title}>Об игре</h1>
-        <Image coverPhotoUrl={coverPhotoUrl} className={styles.avatar} />
+        <Image coverPhotoUrl={coverPhotoUrl} />
         <div>
           <Fieldset name="Название" value={name} changeHandler={setName} placeholder="Название игры" type="text" />
           <Fieldset

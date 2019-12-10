@@ -1,7 +1,9 @@
 import React, { FC } from "react";
+import classNames from "classnames";
 import { Game } from "../../interfaces/game";
 import { Icon } from "../Icon";
 import { CAMERA } from "../../constants/icons";
+import styles from './index.pcss';
 
 interface IProps {
   className: string;
@@ -9,7 +11,9 @@ interface IProps {
 }
 
 export const Image: FC<IProps> = ({ coverPhotoUrl, className }: IProps) => {
-  const image = coverPhotoUrl ? <img src={coverPhotoUrl} alt={coverPhotoUrl} /> : <Icon name={CAMERA} />;
+  const image = coverPhotoUrl ? <img className={styles.image} src={coverPhotoUrl} alt={coverPhotoUrl} /> : <Icon name={CAMERA} />;
 
-  return <div className={className}>{image}</div>;
+  const imageContainerClassName = classNames(styles.imageContainer, className);
+
+  return <div className={imageContainerClassName}>{image}</div>;
 };
