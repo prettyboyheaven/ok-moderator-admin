@@ -6,10 +6,9 @@ import { Image } from "../Image";
 import { Checkbox } from "../Checkbox";
 import { Footer } from "../Footer";
 import { Button } from "../Button";
-import { Icon } from "../Icon";
-import { PLUS, TRASH } from "../../constants/icons";
 import { tagsToArray } from "../../../utils/transformTags";
 import { ITags } from "../../types/tags";
+import { Categories } from "../Categories";
 
 interface Props {
   game: Game;
@@ -208,40 +207,11 @@ export const EditForm: FC<Props> = ({ game }: Props) => {
 
   const ids = playerIds.toString();
 
-  const categories = Object.keys(tags).map(tag => {
-    const { categoryCode, categoryValue } = tags[tag];
-
-    return (
-      <li key={tag} className={styles.category}>
-        <Button
-          clickHandler={(e: MouseEvent<HTMLButtonElement>) => {
-            e.preventDefault();
-            deleteCategory(tag);
-          }}
-        >
-          <Icon name={TRASH} />
-        </Button>
-        <Fieldset
-          value={categoryCode}
-          placeholder="Код"
-          type="text"
-          changeHandler={value => setCategoryCode(value, tag)}
-        />
-        <Fieldset
-          value={categoryValue}
-          placeholder="Название"
-          type="text"
-          changeHandler={value => setCategoryValue(value, tag)}
-        />
-      </li>
-    );
-  });
-
   return (
     <form className={styles.form}>
       <div className={styles.bio}>
         <h1 className={styles.title}>Об игре</h1>
-        <Image coverPhotoUrl={coverPhotoUrl} />
+        {/*<Image coverPhotoUrl={coverPhotoUrl} />*/}
         <div>
           <Fieldset name="Название" value={name} changeHandler={setName} placeholder="Название игры" type="text" />
           <Fieldset
@@ -329,22 +299,15 @@ export const EditForm: FC<Props> = ({ game }: Props) => {
           />
         </div>
       </div>
-      <div className={styles.categories}>
-        <h1 className={styles.title}>Категории для разметки</h1>
-        <Checkbox title="Несколько категорий" clickHandler={setMultiSelectEnabled} isChecked={multiSelectEnabled} />
-        <h2 className={styles.categoriesSubtitle}>Категории</h2>
-        <ul className={styles.categoriesList}>{categories}</ul>
-        <Button
-          className={styles.categoriesButton}
-          clickHandler={(e: MouseEvent<HTMLButtonElement>) => {
-            e.preventDefault();
-            addCategory();
-          }}
-          isAccentLightBackground={ true }
-        >
-          <Icon name={PLUS} /> Добавить категорию
-        </Button>
-      </div>
+      <Categories
+        deleteCategory={ deleteCategory }
+        setCategoryCode={ setCategoryCode }
+        setCategoryValue={ setCategoryValue }
+        multiSelectEnabled={multiSelectEnabled}
+        setMultiSelectEnabled={setMultiSelectEnabled}
+        addCategory={addCategory}
+        tags={ tags }
+      />
       <Footer>
         <Button
           clickHandler={(e: MouseEvent<HTMLButtonElement>) => {

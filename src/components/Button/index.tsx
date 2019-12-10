@@ -2,7 +2,7 @@ import React, { FC, ReactNode, MouseEvent } from "react";
 import styles from "./index.pcss";
 import classNames from "classnames";
 
-interface IProps {
+interface Props {
   className?: string;
   clickHandler: (event: MouseEvent<HTMLButtonElement>) => void;
   children: ReactNode | string;
@@ -12,7 +12,7 @@ interface IProps {
   isAccentLightBackground?: boolean;
 }
 
-export const Button: FC<IProps> = ({
+export const Button: FC<Props> = ({
   children,
   clickHandler,
   className,
@@ -20,7 +20,7 @@ export const Button: FC<IProps> = ({
   isAccentBackground,
   isSubordinateBackground,
   isAccentLightBackground
-}) => {
+}: Props) => {
   const buttonClassName = classNames(styles.button, className, {
     [styles.accent]: isAccent,
     [styles.accentBackground]: isAccentBackground,

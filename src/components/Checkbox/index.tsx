@@ -1,22 +1,17 @@
-import React, {FC, useState} from "react";
+import React, { FC } from "react";
 import { Icon } from "../Icon";
 import { CHECKBOX, CHECKBOX_SELECTED } from "../../constants/icons";
 import styles from "./index.pcss";
 import { Button } from "../Button";
 
-interface IProps {
+interface Props {
   title: string;
   clickHandler: () => void;
   isChecked: boolean;
 }
 
-export const Checkbox: FC<IProps> = ({ title, clickHandler, isChecked }: IProps) => {
-
-  const icon = isChecked ? (
-    <Icon name={CHECKBOX_SELECTED} />
-  ) : (
-    <Icon name={CHECKBOX} />
-  );
+export const Checkbox: FC<Props> = ({ title, clickHandler, isChecked }: Props) => {
+  const icon = isChecked ? <Icon name={CHECKBOX_SELECTED} /> : <Icon name={CHECKBOX} />;
 
   return (
     <Button
