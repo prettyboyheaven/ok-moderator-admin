@@ -1,10 +1,10 @@
 import React, { FC, ReactNode } from "react";
 import styles from "./index.pcss";
 
-interface IProps {
+interface Props {
   children: ReactNode;
 }
 
-export const Footer: FC<IProps> = ({ children }) => (
+export const Footer: FC<Props> = ({ children }: Props) => (
   <footer className={styles.footer}>{children}</footer>
 );

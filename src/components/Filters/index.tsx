@@ -4,14 +4,14 @@ import styles from "./index.pcss";
 import { Button } from "../Button";
 import { Game } from "../../interfaces/game";
 
-interface IProps {
+interface Props {
   filters: { [key: string]: string };
   activeFilter: string;
   setActiveFilter: (filter: string) => void;
   games: Game[];
 }
 
-export const Filters: FC<IProps> = ({ filters, activeFilter, setActiveFilter, games }: IProps) => {
+export const Filters: FC<Props> = ({ filters, activeFilter, setActiveFilter, games }: Props) => {
   const filtersKeys = Object.keys(filters);
 
   const renderFilters = filtersKeys.map((filter: string) => {

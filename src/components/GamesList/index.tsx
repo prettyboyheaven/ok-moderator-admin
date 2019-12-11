@@ -1,4 +1,4 @@
-import React from "react";
+import React, {FC} from "react";
 import styles from "./index.pcss";
 import { ControlPanel } from "../ControlPanel";
 import { Icon } from "../Icon";
@@ -22,19 +22,19 @@ interface GameProgress {
   totalRecords: string;
 }
 
-interface IProps {
+interface Props {
   games: Game[];
   activeFilter: string;
 }
 
-const GameName = ({ name, taskDescription }: GameName) => (
+const GameName: FC<GameName> = ({ name, taskDescription }: GameName) => (
   <div className={styles.name}>
     <h1 className={styles.title}>{name}</h1>
     {taskDescription && <p>{taskDescription}</p>}
   </div>
 );
 
-const GameStats = ({ priority, id, type }: GameStats) => (
+const GameStats: FC<GameStats> = ({ priority, id, type }: GameStats) => (
   <div className={styles.stats}>
     <p className={styles.description}>
       <Icon name={PRIORITY} />
@@ -51,7 +51,7 @@ const GameStats = ({ priority, id, type }: GameStats) => (
   </div>
 );
 
-const GameProgress = ({ processedRecords, totalRecords }: GameProgress) => {
+const GameProgress: FC<GameProgress> = ({ processedRecords, totalRecords }: GameProgress) => {
   const progress = Math.floor((+processedRecords / +totalRecords) * 100) || 0;
 
   return (
@@ -62,7 +62,7 @@ const GameProgress = ({ processedRecords, totalRecords }: GameProgress) => {
   );
 };
 
-export const GamesList = ({ games, activeFilter }: IProps) => {
+export const GamesList: FC<Props> = ({ games, activeFilter }: Props) => {
   if (!games.length) {
     return null;
   }

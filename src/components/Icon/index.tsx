@@ -39,11 +39,11 @@ import {
 } from "../../constants/icons";
 import styles from "./index.pcss";
 
-interface IProps {
+interface Props {
   name: string;
 }
 
-export const Icon: FC<IProps> = ({ name }) => {
+export const Icon: FC<Props> = ({ name }: Props) => {
   switch (name) {
     case HOME: {
       return <Home className={styles.iconDarkest} />;

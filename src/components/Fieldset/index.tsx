@@ -1,7 +1,7 @@
 import React, { Dispatch, ReducerAction, SetStateAction } from "react";
 import styles from "./index.pcss";
 
-interface IProps {
+interface Props {
   name?: string;
   value: string | number;
   placeholder: string;
@@ -9,7 +9,7 @@ interface IProps {
   changeHandler: (value: string) => void;
 }
 
-export const Fieldset = ({ name, value, changeHandler, placeholder, type }: IProps) => {
+export const Fieldset = ({ name, value, changeHandler, placeholder, type }: Props) => {
   return (
     <fieldset>
       {name && <legend className={styles.title}>{name}</legend>}
