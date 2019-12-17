@@ -1,19 +1,29 @@
+@value colors: "../../styles/variables/colorVariables.pcss";
+@value accent, subordinate, primary from colors;
+
+@value spaces: "../../styles/variables/spaceVariables.pcss";
+@value space-s, space-m, space-xl from spaces;
+
 .filtersList {
   display: grid;
   width: 100%;
   grid-template-columns: repeat(4, min-content);
   overflow-y: auto;
-  grid-gap: 15px;
+  grid-gap: space-m;
 }
 
 .filter {
-  color: #999;
-  padding-bottom: 10px;
-  margin-bottom: 25px;
+  color: subordinate;
+  padding-bottom: space-s;
+  margin-bottom: space-xl;
   white-space: nowrap;
 }
 
 .activeFilter {
-  color: #333;
-  border-bottom: 1px solid #ee8208;
+  color: primary;
+  border-bottom: 1px solid accent;
+}
+
+.count {
+  opacity: 0.6;
 }

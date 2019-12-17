@@ -29,5 +29,7 @@ export interface Game {
   amountOfTrainTasks: number;
   percentToPass: number;
   multiSelectEnabled: boolean;
+  createdMillis: string;
+  lastUpdatedMillis: string;
   tags?: ITagsAsArray;
 }

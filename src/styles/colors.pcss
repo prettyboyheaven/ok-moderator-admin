@@ -1,3 +1,19 @@
+@value colors: "colorVariables.pcss";
+@value accent, primary, subordinate from colors;
+
+.accent-color {
+  color: accent;
+}
+
+.accent-darkest-color {
+  color: primary;
+}
+
+.subordinate-color {
+  color: subordinate;
+}
+
+
 .default-white {
   background: white;
 }
@@ -15,20 +31,13 @@
 }
 
 .accent {
-  background: #ee8208;
+  background: accent;
 }
 
 .accent-lightest {
   background: #fdf6e4;
 }
 
-.accent-darkest {
-  color: #333;
-}
-
-.accent-color {
-  color: #ee8208;
-}
 
 .secondary-color {
   color: #999;
@@ -39,5 +48,5 @@
 }
 
 .icon-darkest {
-  fill: #333;
+  fill: primary;
 }

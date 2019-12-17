@@ -22,11 +22,12 @@ export const Filters: FC<Props> = ({ filters, activeFilter, setActiveFilter, gam
     });
 
     const gamesCount = games.filter((game: Game) => game.state === filter).length;
-    const text = `${value} ${gamesCount}`;
 
     return (
       <li className={filterClassNames} key={filter}>
-        <Button clickHandler={() => setActiveFilter(filter)}>{text}</Button>
+        <Button clickHandler={() => setActiveFilter(filter)}>
+          {value} <span className={styles.count}>{gamesCount}</span>
+        </Button>
       </li>
     );
   });

@@ -1,0 +1,27 @@
+@value spaces: './variables/spaceVariables.pcss';
+@value space-s, space-m from spaces;
+
+@value fonts: './variables/fontSizeVariables.pcss';
+@value font-xs, font-s, font-m from fonts;
+
+@value colors: './variables/colorVariables.pcss';
+@value primary from colors;
+
+.title {
+  font-weight: bold;
+  font-size: font-s;
+  padding-bottom: space-s;
+  color: primary;
+}
+
+.title-large {
+  composes: title;
+  font-size: font-m;
+  padding-bottom: space-m;
+}
+
+.content {
+  font-weight: normal;
+  font-size: font-xs;
+  padding-bottom: space-s;
+}

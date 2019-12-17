@@ -6,7 +6,7 @@ import { CAMERA } from "../../constants/icons";
 import styles from './index.pcss';
 
 interface Props {
-  className: string;
+  className?: string;
   coverPhotoUrl: Game["coverPhotoUrl"];
 }
 

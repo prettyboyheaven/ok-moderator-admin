@@ -1,13 +1,5 @@
-.title {
-  padding-bottom: 10px;
-  composes: accent-darkest from "../../styles/colors.pcss";
-  font-weight: bold;
-}
-
-.title,
-.input {
-  composes: title from "../../styles/fonts.pcss";
-  composes: mobile-title from "../../styles/fonts.pcss";
+.title, .input {
+  composes: title from '../../styles/content.pcss';
 }
 
 .input {
@@ -16,4 +8,5 @@
   padding: 7px;
   box-sizing: border-box;
   width: 100%;
+  font-weight: normal;
 }

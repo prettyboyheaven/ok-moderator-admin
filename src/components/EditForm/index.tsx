@@ -63,22 +63,22 @@ const reducer = (state: Game, action: Action): Game => {
       return { ...state, playerIds: [""] };
     }
     case "SET_PREMIUM_TAG": {
-      return { ...state, premiumTag: action.payload.premiumTag };
+      return { ...state, premiumTag: Number(action.payload.premiumTag) };
     }
     case "SET_PREMIUM_ALT_TAG": {
-      return { ...state, premiumAltTag: action.payload.premiumAltTag };
+      return { ...state, premiumAltTag: Number(action.payload.premiumAltTag) };
     }
     case "SET_PENALTY_TAG": {
-      return { ...state, penaltyTag: action.payload.penaltyTag };
+      return { ...state, penaltyTag: Number(action.payload.penaltyTag) };
     }
     case "SET_PENALTY_ALT_TAG": {
-      return { ...state, penaltyAltTag: action.payload.penaltyAltTag };
+      return { ...state, penaltyAltTag: Number(action.payload.penaltyAltTag) };
     }
     case "SET_QUORUM_PERCENT": {
-      return { ...state, quorumPercent: action.payload.quorumPercent };
+      return { ...state, quorumPercent: Number(action.payload.quorumPercent) };
     }
     case "SET_MINIMAL_NUM_VOTES": {
-      return { ...state, minimalNumVotes: action.payload.minimalNumVotes };
+      return { ...state, minimalNumVotes: Number(action.payload.minimalNumVotes) };
     }
     case "SET_PRIVACY_ENABLED": {
       return { ...state, checkPrivacyEnabled: !state.checkPrivacyEnabled };
@@ -98,11 +98,11 @@ const reducer = (state: Game, action: Action): Game => {
     case "SET_AMOUNT_OF_TRAIN_TASKS": {
       return {
         ...state,
-        amountOfTrainTasks: action.payload.amountOfTrainTasks
+        amountOfTrainTasks: Number(action.payload.amountOfTrainTasks)
       };
     }
     case "SET_PERCENT_TO_PASS": {
-      return { ...state, percentToPass: action.payload.percentToPass };
+      return { ...state, percentToPass: Number(action.payload.percentToPass) };
     }
     case "SET_MULTI_SELECT_ENABLED": {
       return { ...state, multiSelectEnabled: !state.multiSelectEnabled };
@@ -187,32 +187,33 @@ export const EditForm: FC<Props> = ({ game }: Props) => {
 
   const {
     name,
-    coverPhotoUrl,
-    premiumTag,
-    premiumAltTag,
-    penaltyTag,
-    penaltyAltTag,
+    // если фото отсутсвует, то поле не приходит
+    // и в дев режиме реакт ругается на попытку изменения поля
+    coverPhotoUrl = "",
+    premiumTag = 4,
+    premiumAltTag = 2,
+    penaltyTag = 6,
+    penaltyAltTag = 8,
     playerIds,
-    quorumPercent,
-    minimalNumVotes,
-    checkPrivacyEnabled,
-    checkExternalImageAvailability,
-    streaming,
-    trainingEnabled,
-    percentToPass,
-    amountOfTrainTasks,
+    quorumPercent = 85,
+    minimalNumVotes = 5,
+    checkPrivacyEnabled = true,
+    checkExternalImageAvailability = true,
+    streaming = false,
+    trainingEnabled = false,
+    percentToPass = 0,
+    amountOfTrainTasks = 0,
     multiSelectEnabled,
     tags
   } = state;
 
   const ids = playerIds.toString();
-
   return (
     <form className={styles.form}>
       <div className={styles.bio}>
         <h1 className={styles.title}>Об игре</h1>
-        {/*<Image coverPhotoUrl={coverPhotoUrl} />*/}
-        <div>
+        <Image coverPhotoUrl={coverPhotoUrl} />
+        <div className={ styles.settingsRow }>
           <Fieldset name="Название" value={name} changeHandler={setName} placeholder="Название игры" type="text" />
           <Fieldset
             name="Аватар"
@@ -300,13 +301,13 @@ export const EditForm: FC<Props> = ({ game }: Props) => {
         </div>
       </div>
       <Categories
-        deleteCategory={ deleteCategory }
-        setCategoryCode={ setCategoryCode }
-        setCategoryValue={ setCategoryValue }
+        deleteCategory={deleteCategory}
+        setCategoryCode={setCategoryCode}
+        setCategoryValue={setCategoryValue}
         multiSelectEnabled={multiSelectEnabled}
         setMultiSelectEnabled={setMultiSelectEnabled}
         addCategory={addCategory}
-        tags={ tags }
+        tags={tags}
       />
       <Footer>
         <Button

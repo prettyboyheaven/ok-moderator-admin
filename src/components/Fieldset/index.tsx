@@ -1,5 +1,6 @@
 import React, { Dispatch, ReducerAction, SetStateAction } from "react";
 import styles from "./index.pcss";
+import validate = WebAssembly.validate;
 
 interface Props {
   name?: string;

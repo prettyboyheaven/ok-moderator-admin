@@ -34,17 +34,17 @@ export const ControlPanel = ({ game }) => {
           </Link>
         </li>
         <li>
-          <Button clickHandler={() => null}>
+          <Button className={styles.control} clickHandler={() => null}>
             <Icon name={PLAY} />
           </Button>
         </li>
         <li>
-          <Button clickHandler={() => null}>
+          <Button className={styles.control} clickHandler={() => null}>
             <Icon name={PAUSE} />
           </Button>
         </li>
         <li>
-          <Button clickHandler={() => null}>
+          <Button className={styles.control} clickHandler={() => null}>
             <Icon name={TRASH} />
           </Button>
         </li>
@@ -59,7 +59,7 @@ export const ControlPanel = ({ game }) => {
           </Link>
         </li>
         <li>
-          <Button clickHandler={() => null}>
+          <Button className={styles.control} clickHandler={() => null}>
             <Icon name={DOWNLOAD} />
           </Button>
         </li>

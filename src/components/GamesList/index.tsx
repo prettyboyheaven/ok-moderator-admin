@@ -1,4 +1,4 @@
-import React, {FC} from "react";
+import React, { FC } from "react";
 import styles from "./index.pcss";
 import { ControlPanel } from "../ControlPanel";
 import { Icon } from "../Icon";
@@ -15,6 +15,8 @@ interface GameStats {
   priority: string;
   id: string;
   type?: string;
+  createdMillis: string;
+  lastUpdatedMillis: string;
 }
 
 interface GameProgress {
@@ -30,26 +32,45 @@ interface Props {
 const GameName: FC<GameName> = ({ name, taskDescription }: GameName) => (
   <div className={styles.name}>
     <h1 className={styles.title}>{name}</h1>
-    {taskDescription && <p>{taskDescription}</p>}
+    {/*{taskDescription && <p>{taskDescription}</p>}*/}
   </div>
 );
 
-const GameStats: FC<GameStats> = ({ priority, id, type }: GameStats) => (
-  <div className={styles.stats}>
-    <p className={styles.description}>
-      <Icon name={PRIORITY} />
-      <span>{priority}</span>
-    </p>
-    <p className={styles.description}>
-      <Icon name={ID} />
-      <span>{id}</span>
-    </p>
-    <p className={styles.description}>
-      <Icon name={TYPE} />
-      <span>{type}</span>
-    </p>
-  </div>
-);
+const GameStats: FC<GameStats> = ({ priority, id, type, createdMillis, lastUpdatedMillis }: GameStats) => {
+  const formatDate = (date: string) => {
+    const formattedDate = new Date(Number(date));
+
+    const result = {
+      date: `${formattedDate.getDate()}.${formattedDate.getMonth()}.${formattedDate.getFullYear()}`,
+      time: `${formattedDate.getHours()}:${formattedDate.getMinutes()}`,
+      get fullDate() {
+        return this.date + " " + this.time;
+      }
+    };
+
+    return result.fullDate;
+  };
+
+  return (
+    <div className={styles.stats}>
+      <p className={styles.description}>
+        <Icon name={PRIORITY} />
+        <span>{priority}</span>
+      </p>
+      <p className={styles.description}>
+        <Icon name={ID} />
+        <span>{id}</span>
+      </p>
+      <p className={styles.description}>
+        <Icon name={TYPE} />
+        <span>{type}</span>
+      </p>
+      <p className={styles.time}>
+        Создано {formatDate(createdMillis)} | Изменено {formatDate(lastUpdatedMillis)}
+      </p>
+    </div>
+  );
+};
 
 const GameProgress: FC<GameProgress> = ({ processedRecords, totalRecords }: GameProgress) => {
   const progress = Math.floor((+processedRecords / +totalRecords) * 100) || 0;
@@ -78,7 +99,9 @@ export const GamesList: FC<Props> = ({ games, activeFilter }: Props) => {
         id,
         labelingStrategy,
         totalRecords,
-        processedRecords
+        processedRecords,
+        createdMillis,
+        lastUpdatedMillis
       } = game;
 
       const type = labelingStrategy && labelingStrategy.type;
@@ -87,7 +110,13 @@ export const GamesList: FC<Props> = ({ games, activeFilter }: Props) => {
         <li className={styles.game} key={id}>
           <GameName name={name} taskDescription={taskDescription} />
           <Image className={styles.image} coverPhotoUrl={coverPhotoUrl} />
-          <GameStats priority={priority} id={id} type={type} />
+          <GameStats
+            priority={priority}
+            id={id}
+            type={type}
+            createdMillis={createdMillis}
+            lastUpdatedMillis={lastUpdatedMillis}
+          />
           <GameProgress processedRecords={processedRecords} totalRecords={totalRecords} />
           <ControlPanel game={game} />
         </li>

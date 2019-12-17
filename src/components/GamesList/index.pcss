@@ -1,3 +1,12 @@
+@value colors: "../../styles/variables/colorVariables.pcss";
+@value primary, subordinate, secondary from colors;
+
+@value spaces: "../../styles/variables/spaceVariables.pcss";
+@value space-xs, space-s, space-m, space-2xl from spaces;
+
+@value media: "../../styles/variables/mediaVariables.pcss";
+@value large from media;
+
 .game {
   display: grid;
   grid-template-areas:
@@ -6,16 +15,17 @@
     "progress progress"
     "control-panel control-panel";
   grid-template-columns: 128px 1fr;
-  grid-gap: 10px;
+  grid-gap: space-s;
   padding-bottom: 45px;
 }
 
 @media (min-width: 896px) {
   .game {
-    grid-template-columns: 128px 1fr 1fr;
+    grid-template-columns: 128px 1fr 0.6fr;
     grid-template-areas:
       "image name progress"
       "image stats control-panel";
+    grid-template-rows: auto 1fr;
   }
 }
 
@@ -24,15 +34,15 @@
 }
 
 .title {
-  composes: mobile-title from "../../styles/fonts.pcss";
-  padding-bottom: 8px;
+  composes: title from "../../styles/content.pcss";
+  color: primary;
 }
 
 .description {
-  composes: mobile-description from "../../styles/fonts.pcss";
-  padding-bottom: 10px;
+  composes: content from "../../styles/content.pcss";
   display: grid;
   grid-template-columns: 20px 1fr;
+  color: secondary;
 }
 
 .image {
@@ -49,10 +59,11 @@
   width: 100%;
   composes: xl-border-radius from "../../styles/borders.pcss";
   composes: accent-lightest from "../../styles/colors.pcss";
-  padding: 5px 0;
+  padding: 6px 0;
   z-index: 1;
   grid-area: progress;
-  margin-bottom: 15px;
+  margin: space-m 0;
+  overflow: hidden;
 }
 
 .progressLine {
@@ -71,5 +82,35 @@
 }
 
 .stats {
+  padding-top: space-xs;
   grid-area: stats;
+}
+
+.time {
+  composes: content from "../../styles/content.pcss";
+  line-height: 1.4;
+  grid-column-start: 1;
+  grid-column-end: 4;
+  color: subordinate;
+  padding-bottom: 0
+}
+
+@media (min-width: large) {
+  .progress {
+    margin: 0;
+  }
+
+  .description {
+    padding-bottom: 0;
+  }
+
+  .stats {
+    padding-top: 0;
+    display: grid;
+    grid-template-columns: repeat(3, min-content);
+    grid-gap: 0;
+    grid-column-gap: space-2xl;
+    grid-template-rows: 1fr;
+    align-items: center;
+  }
 }

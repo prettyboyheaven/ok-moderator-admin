@@ -1,14 +1,20 @@
+@value spaces: "../../styles/variables/spaceVariables.pcss";
+@value space-s, space-m, space-3xl, space-4xl from spaces;
+
+@value media: "../../styles/variables/mediaVariables.pcss";
+@value large from media;
+
 .bio,
 .main,
 .additional {
-  padding-bottom: 40px;
+  padding-bottom: space-4xl;
 }
 
 .bio {
   display: grid;
   grid-template-columns: 128px 1fr;
-  grid-column-gap: 10px;
-  padding-bottom: 35px;
+  grid-column-gap: space-s;
+  padding-bottom: space-3xl;
   grid-area: bio;
 }
 
@@ -33,10 +39,9 @@
 }
 
 .title {
-  composes: mobile-title-large from "../../styles/fonts.pcss";
-  composes: accent-darkest from "../../styles/colors.pcss";
-  font-weight: bold;
-  margin-bottom: 15px;
+  composes: title-large from '../../styles/content.pcss';
+  padding-bottom: 0;
+  margin-bottom: space-m;
   grid-column-start: 1;
   grid-column-end: 3;
 }
@@ -44,11 +49,17 @@
 .settings {
   grid-template-columns: 1fr 1fr;
   display: grid;
-  grid-column-gap: 10px;
-  grid-row-gap: 15px;
+  grid-column-gap: space-s;
+  grid-row-gap: space-m;
 }
 
-@media (min-width: 896px) {
+.settingsRow {
+  display: grid;
+  grid-auto-flow: row;
+  align-items: self-end;
+}
+
+@media (min-width: large) {
   .form {
     display: grid;
     grid-template-areas:
@@ -57,6 +68,7 @@
             "additional categories";
     grid-template-columns: repeat(2, 48%);
     grid-column-gap: 4%;
+    grid-template-rows: 195px 1fr;
   }
 
   .settings {
