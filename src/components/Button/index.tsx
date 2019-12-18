@@ -7,9 +7,8 @@ interface Props {
   clickHandler: (event: MouseEvent<HTMLButtonElement>) => void;
   children: ReactNode | string;
   isAccent?: boolean;
-  isAccentBackground?: boolean;
-  isSubordinateBackground?: boolean;
-  isAccentLightBackground?: boolean;
+  isAccentLight?: boolean;
+  isSubordinate?: boolean;
 }
 
 export const Button: FC<Props> = ({
@@ -17,15 +16,13 @@ export const Button: FC<Props> = ({
   clickHandler,
   className,
   isAccent,
-  isAccentBackground,
-  isSubordinateBackground,
-  isAccentLightBackground
+  isAccentLight,
+  isSubordinate
 }: Props) => {
   const buttonClassName = classNames(styles.button, className, {
     [styles.accent]: isAccent,
-    [styles.accentBackground]: isAccentBackground,
-    [styles.subordinateBackground]: isSubordinateBackground,
-    [styles.accentLightBackground]: isAccentLightBackground
+    [styles.accentLight]: isAccentLight,
+    [styles.subordinate]: isSubordinate
   });
 
   return (

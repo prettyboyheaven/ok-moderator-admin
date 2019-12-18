@@ -1,34 +1,40 @@
+@value spaces: '../../styles/variables/spaceVariables.pcss';
+@value space-m from spaces;
+
+@value colors: '../../styles/variables/colorVariables.pcss';
+@value accent-light, accent from colors;
+
 .title {
-    composes: mobile-title-large from "../../styles/fonts.pcss";
-    composes: accent-darkest-color from "../../styles/colors.pcss";
-    font-weight: bold;
-    margin-bottom: 15px;
-    grid-column-start: 1;
-    grid-column-end: 3;
+  composes: mobile-title-large from "../../styles/fonts.pcss";
+  composes: accent-darkest-color from "../../styles/colors.pcss";
+  font-weight: bold;
+  margin-bottom: space-m;
+  grid-column-start: 1;
+  grid-column-end: 3;
 }
 
 .subtitle {
-    composes: subtitle from '../../styles/texts.pcss';
+  composes: subtitle from "../../styles/texts.pcss";
 }
 
 .list {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-row-gap: 15px;
-    padding-bottom: 15px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: space-m;
+  padding-bottom: space-m;
 }
 
 .button {
-    width: 100%;
+  width: 100%;
 }
 
 .button > svg {
-    display: inline-block;
-    vertical-align: middle;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .category {
-    display: grid;
-    grid-auto-flow: column;
-    grid-gap: 15px;
+  display: grid;
+  grid-template-columns: min-content auto auto;
+  grid-gap: space-m;
 }

@@ -1,3 +1,9 @@
+@value colors: '../../styles/variables/colorVariables.pcss';
+@value accent, accent-light, subordinate-light, secondary,  white from colors;
+
+@value spaces: '../../styles/variables/spaceVariables.pcss';
+@value space-xs, space-s, space-m from spaces;
+
 .button {
   composes: mobile-button from "../../styles/fonts.pcss";
   padding: 0;
@@ -7,27 +13,25 @@
   background-color: transparent;
 }
 
-.accent {
-  composes: accent-color from "../../styles/colors.pcss";
+.accentLight {
+  color: accent;
+  background-color: accent-light;
 }
 
-.accentBackground, .subordinateBackground, .accentLightBackground {
+.accent {
+  color: white;
+  background-color: accent;
+}
+
+.subordinate {
+  color: secondary;
+  background-color: subordinate-light;
+}
+
+.accent,
+.subordinate,
+.accentLight {
   composes: xxl-border-radius from "../../styles/borders.pcss";
   border: none;
-  padding: 5px 15px;
-}
-
-.accentBackground {
-  composes: accent from "../../styles/colors.pcss";
-  composes: default-white-color from "../../styles/colors.pcss";
-}
-
-.accentLightBackground {
-  composes: accent-color from "../../styles/colors.pcss";
-  composes: accent-lightest from "../../styles/colors.pcss";
-}
-
-.subordinateBackground {
-  composes: subordinate from "../../styles/colors.pcss";
-  composes: subordinate-color from "../../styles/colors.pcss";
+  padding: space-xs space-m;
 }

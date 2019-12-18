@@ -1,26 +1,40 @@
+@value spaces: "../../styles/variables/spaceVariables.pcss";
+@value space-s, space-l, space-xl from spaces;
+
+@value colors: "../../styles/variables/colorVariables.pcss";
+@value accent from colors;
+
 .header {
   display: flex;
   justify-content: space-between;
   position: relative;
-  padding-top: 10px;
-  padding-bottom: 25px;
+  padding-top: space-s;
+  padding-bottom: space-xl;
+}
+
+.homeLink, .creationButton {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  font-weight: bold;
 }
 
 .homeLink {
-  composes: title from "../../styles/fonts.pcss";
-  composes: accent-darkest-color from "../../styles/colors.pcss";
-  composes: mobile-title-large from "../../styles/fonts.pcss";
+  composes: link-large from '../../styles/content.pcss';
   text-decoration: none;
 }
 
-.homeLinkText {
-  font-weight: bold;
-  display: grid;
-  grid-auto-flow: column;
+.homeLink span {
+  padding-left: space-s;
 }
 
-.headerCreationMenu {
+.creationButton span {
+  padding-right: space-s;
+  color: accent;
+}
+
+.creationMenu {
   position: absolute;
   right: 0;
-  top: 20px;
+  top: space-l;
 }

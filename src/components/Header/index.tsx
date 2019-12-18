@@ -14,15 +14,12 @@ export const Header = () => {
   return (
     <header className={styles.header}>
       <Link className={styles.homeLink} to={"/"}>
-        <p className={styles.homeLinkText}>
-          <Icon name={HOME} /> <span>Разметка</span>
-        </p>
+        <Icon name={HOME} /> <span>Разметка</span>
       </Link>
-      <Button clickHandler={() => setOpen(!isOpen)} isAccent={true}>
-        Создать
-        <Icon name={triangleIconName} />
+      <Button className={styles.creationButton} clickHandler={() => setOpen(!isOpen)}>
+        <span>Создать</span> <Icon name={triangleIconName} />
       </Button>
-      {isOpen && <CreationMenu className={styles.headerCreationMenu} />}
+      {isOpen && <CreationMenu className={styles.creationMenu} />}
     </header>
   );
 };

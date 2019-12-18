@@ -315,7 +315,7 @@ export const EditForm: FC<Props> = ({ game }: Props) => {
             e.preventDefault();
             reset();
           }}
-          isSubordinateBackground={true}
+          isSubordinate={true}
         >
           Отменить
         </Button>
@@ -324,7 +324,7 @@ export const EditForm: FC<Props> = ({ game }: Props) => {
             e.preventDefault();
             console.log(state);
           }}
-          isAccentBackground={true}
+          isAccent={true}
         >
           Отправить на валидацию
         </Button>

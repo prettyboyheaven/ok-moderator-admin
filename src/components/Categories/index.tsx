@@ -67,7 +67,7 @@ export const Categories: FC<Props> = ({
           e.preventDefault();
           addCategory();
         }}
-        isAccentLightBackground={true}
+        isAccentLight={ true }
       >
         <Icon name={PLUS} /> Добавить категорию
       </Button>
