@@ -7,9 +7,7 @@ import { getEndpoint } from "../../utils/getEndpoint";
 import { filters } from "../enums/gameStateFilters";
 
 export const Games = () => {
-  const [{ data, loading, error }, refetch] = useAxios(
-    getEndpoint({ method: "moderation.datasetGetList" })
-  );
+  const [{ data, loading, error }, refetch] = useAxios(getEndpoint({ method: "moderation.datasetGetList" }));
 
   const [activeFilter, setActiveFilter] = useState(Object.keys(filters)[1]);
 
@@ -18,14 +16,15 @@ export const Games = () => {
   }
 
   const { datasets: games } = data;
-    return (
+  return (
     <>
       <Header />
       <Filters
         filters={filters}
         activeFilter={activeFilter}
         setActiveFilter={setActiveFilter}
-        games={ games }
+        games={games}
+        refetch={refetch}
       />
       <GamesList games={games} activeFilter={activeFilter} />
     </>

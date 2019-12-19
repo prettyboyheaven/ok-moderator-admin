@@ -9,6 +9,7 @@ import { Button } from "../Button";
 import { tagsToArray } from "../../../utils/transformTags";
 import { ITags } from "../../types/tags";
 import { Categories } from "../Categories";
+import UploadFile from "../UploadFile";
 
 interface Props {
   game: Game;
@@ -204,7 +205,8 @@ export const EditForm: FC<Props> = ({ game }: Props) => {
     percentToPass = 0,
     amountOfTrainTasks = 0,
     multiSelectEnabled,
-    tags
+    tags,
+    id
   } = state;
 
   const ids = playerIds.toString();
@@ -213,7 +215,7 @@ export const EditForm: FC<Props> = ({ game }: Props) => {
       <div className={styles.bio}>
         <h1 className={styles.title}>Об игре</h1>
         <Image coverPhotoUrl={coverPhotoUrl} />
-        <div className={ styles.settingsRow }>
+        <div className={styles.settingsRow}>
           <Fieldset name="Название" value={name} changeHandler={setName} placeholder="Название игры" type="text" />
           <Fieldset
             name="Аватар"
@@ -225,7 +227,7 @@ export const EditForm: FC<Props> = ({ game }: Props) => {
         </div>
       </div>
       <div className={styles.main}>
-        <h1 className={styles.title}>Основные</h1>
+        <h1 className={styles.title}>Основные</h1> <UploadFile id={id} title="Загрузить файл" />
         <Fieldset name="PlayersIDs" value={ids} changeHandler={setPlayerIds} placeholder="PlayersIDs" type="text" />
         <Checkbox title="isAvailableForAllUsers" clickHandler={setAvailableForAllUsers} isChecked={ids === ""} />
         <div className={styles.settings}>

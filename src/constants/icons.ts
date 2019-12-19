@@ -16,3 +16,4 @@ export const CAMERA = "CAMERA";
 export const CHECKBOX_SELECTED = "CHECKBOX_SELECTED";
 export const CHECKBOX = "CHECKBOX";
 export const PLUS = "PLUS";
+export const REFRESH = "REFRESH";

@@ -17,6 +17,7 @@ import Camera from "../../icons/Camera.svg";
 import CheckboxSelected from "../../icons/CheckboxSelected.svg";
 import Checkbox from "../../icons/Checkbox.svg";
 import Plus from "../../icons/Plus.svg";
+import Refresh from "../../icons/refresh.svg";
 import {
   HOME,
   PRIORITY,
@@ -35,7 +36,8 @@ import {
   CAMERA,
   CHECKBOX,
   CHECKBOX_SELECTED,
-  PLUS
+  PLUS,
+  REFRESH
 } from "../../constants/icons";
 import styles from "./index.pcss";
 
@@ -98,6 +100,9 @@ export const Icon: FC<Props> = ({ name }: Props) => {
     }
     case PLUS: {
       return <Plus />;
+    }
+    case REFRESH: {
+      return <Refresh />;
     }
     default: {
       return null;

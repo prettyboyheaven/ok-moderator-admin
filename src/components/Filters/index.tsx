@@ -3,15 +3,18 @@ import classNames from "classnames";
 import styles from "./index.pcss";
 import { Button } from "../Button";
 import { Game } from "../../interfaces/game";
+import { Icon } from "../Icon";
+import { REFRESH } from "../../constants/icons";
 
 interface Props {
   filters: { [key: string]: string };
   activeFilter: string;
   setActiveFilter: (filter: string) => void;
   games: Game[];
+  refetch: () => void;
 }
 
-export const Filters: FC<Props> = ({ filters, activeFilter, setActiveFilter, games }: Props) => {
+export const Filters: FC<Props> = ({ filters, activeFilter, setActiveFilter, games, refetch }: Props) => {
   const filtersKeys = Object.keys(filters);
 
   const renderFilters = filtersKeys.map((filter: string) => {
@@ -34,7 +37,14 @@ export const Filters: FC<Props> = ({ filters, activeFilter, setActiveFilter, gam
 
   return (
     <nav>
-      <ul className={styles.filtersList}>{renderFilters}</ul>
+      <ul className={styles.filtersList}>
+        {renderFilters}
+        <li>
+          <Button clickHandler={refetch}>
+            <Icon name={REFRESH} />
+          </Button>
+        </li>
+      </ul>
     </nav>
   );
 };
