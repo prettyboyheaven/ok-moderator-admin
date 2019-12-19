@@ -10,7 +10,7 @@ interface Props {
 const UploadFile: FC<Props> = ({ title, id }: Props) => {
   const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files;
-      console.log(file, id);
+    console.log(file, id);
   };
 
   return (

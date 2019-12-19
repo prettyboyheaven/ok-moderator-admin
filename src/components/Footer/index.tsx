@@ -5,6 +5,4 @@ interface Props {
   children: ReactNode;
 }
 
-export const Footer: FC<Props> = ({ children }: Props) => (
-  <footer className={styles.footer}>{children}</footer>
-);
+export const Footer: FC<Props> = ({ children }: Props) => <footer className={styles.footer}>{children}</footer>;

@@ -1,9 +1,6 @@
 import { Md5 } from "ts-md5/dist/md5";
 
-export const generateUrlSignature = (
-  params: { [key: string]: string },
-  secretKey: string
-) => {
+export const generateUrlSignature = (params: { [key: string]: string }, secretKey: string) => {
   let sig = "";
 
   Object.keys(params)

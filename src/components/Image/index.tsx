@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { Game } from "../../interfaces/game";
 import { Icon } from "../Icon";
 import { CAMERA } from "../../constants/icons";
-import styles from './index.pcss';
+import styles from "./index.pcss";
 
 interface Props {
   className?: string;
@@ -11,7 +11,11 @@ interface Props {
 }
 
 export const Image: FC<Props> = ({ coverPhotoUrl, className }: Props) => {
-  const image = coverPhotoUrl ? <img className={styles.image} src={coverPhotoUrl} alt={coverPhotoUrl} /> : <Icon name={CAMERA} />;
+  const image = coverPhotoUrl ? (
+    <img className={styles.image} src={coverPhotoUrl} alt={coverPhotoUrl} />
+  ) : (
+    <Icon name={CAMERA} />
+  );
 
   const imageContainerClassName = classNames(styles.imageContainer, className);
 

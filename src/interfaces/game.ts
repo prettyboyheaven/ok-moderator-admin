@@ -1,4 +1,4 @@
-import {ITagsAsArray} from "../types/tags";
+import { ITagsAsArray } from "../types/tags";
 
 export interface Game {
   coverPhotoUrl: string;
@@ -10,7 +10,7 @@ export interface Game {
     type: string;
     tagMap: {
       [key: string]: string;
-    }
+    };
   };
   totalRecords: string;
   processedRecords: string;
