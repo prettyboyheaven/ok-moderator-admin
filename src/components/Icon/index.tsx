@@ -18,6 +18,8 @@ import CheckboxSelected from "../../icons/CheckboxSelected.svg";
 import Checkbox from "../../icons/Checkbox.svg";
 import Plus from "../../icons/Plus.svg";
 import Refresh from "../../icons/refresh.svg";
+import Eye from "../../icons/eye.svg";
+import Cross from "../../icons/cross.svg";
 import {
   HOME,
   PRIORITY,
@@ -37,7 +39,8 @@ import {
   CHECKBOX,
   CHECKBOX_SELECTED,
   PLUS,
-  REFRESH
+  REFRESH,
+  EYE, CROSS
 } from "../../constants/icons";
 import styles from "./index.pcss";
 
@@ -103,6 +106,12 @@ export const Icon: FC<Props> = ({ name }: Props) => {
     }
     case REFRESH: {
       return <Refresh />;
+    }
+    case EYE: {
+      return <Eye />;
+    }
+    case CROSS: {
+      return <Cross />;
     }
     default: {
       return null;

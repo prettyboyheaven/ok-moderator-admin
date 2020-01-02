@@ -14,9 +14,7 @@ const App = () => {
         <Route path="/rules/:id">
           <Rules />
         </Route>
-        <Route path="/traps/:id">
-          <Traps />
-        </Route>
+        <Route path="/traps/:id" component={Traps} />
         <Route path="/">
           <Games />
         </Route>

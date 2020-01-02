@@ -1,12 +1,17 @@
-import React from "react";
+import React, { FC } from "react";
 import { Icon } from "../Icon";
 import { Link } from "react-router-dom";
 import { CHARTS, EDIT, PAUSE, PLAY, TRASH, RULES, TRAPS, DOWNLOAD } from "../../constants/icons";
 import { ExternalLink } from "../ExternalLink";
 import { Button } from "../Button";
 import styles from "./index.pcss";
+import { Game } from "../../interfaces/game";
 
-export const ControlPanel = ({ game }) => {
+type Props = {
+  game: Game;
+};
+
+const ControlPanel: FC<Props> = ({ game }: Props) => {
   const { id } = game;
 
   const chartsUrl = `https://charts.odkl.ru/reports?id=1330587&ModerationArenaOpStatParam1=${id}&filter=true`;
@@ -45,7 +50,12 @@ export const ControlPanel = ({ game }) => {
           </Link>
         </li>
         <li>
-          <Link to={{ pathname: `/traps/${id}` }}>
+          <Link
+            to={{
+              pathname: `/traps/${id}`,
+              state: { game }
+            }}
+          >
             <Icon name={TRAPS} />
           </Link>
         </li>
@@ -63,3 +73,5 @@ export const ControlPanel = ({ game }) => {
     </nav>
   );
 };
+
+export default ControlPanel;

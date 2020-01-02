@@ -1,4 +1,5 @@
-import { ITagsAsArray } from "../types/tags";
+import {ITags} from "../types/tags";
+import { LabelingStrategy } from "../types/labelingStrategy";
 
 export interface Game {
   coverPhotoUrl: string;
@@ -6,12 +7,7 @@ export interface Game {
   taskDescription: string;
   priority: string;
   id: string;
-  labelingStrategy: {
-    type: string;
-    tagMap: {
-      [key: string]: string;
-    };
-  };
+  labelingStrategy: LabelingStrategy;
   totalRecords: string;
   processedRecords: string;
   state: string;
@@ -31,5 +27,8 @@ export interface Game {
   multiSelectEnabled: boolean;
   createdMillis: string;
   lastUpdatedMillis: string;
-  tags?: ITagsAsArray;
+}
+
+export interface GameWithTags extends Game {
+  tags: ITags
 }

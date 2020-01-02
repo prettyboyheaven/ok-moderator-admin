@@ -1,24 +1,23 @@
 import React, { FC, useReducer, MouseEvent } from "react";
-import { Game } from "../../interfaces/game";
+import { Game, GameWithTags } from "../../interfaces/game";
 import { Fieldset } from "../Fieldset";
 import styles from "./index.pcss";
 import { Image } from "../Image";
 import { Checkbox } from "../Checkbox";
 import { Footer } from "../Footer";
 import { Button } from "../Button";
-import { tagsToArray } from "../../../utils/transformTags";
+import { getGameWithTags, getGameWithoutTags } from "../../../utils/transformTags";
 import { ITags } from "../../types/tags";
 import { Categories } from "../Categories";
 import UploadFile from "../UploadFile";
+import { getEndpoint } from "../../../utils/getEndpoint";
 
 interface Props {
   game: Game;
 }
 
-const init = (initialState: Game) => {
-  const { labelingStrategy } = initialState;
-  initialState.tags = tagsToArray(labelingStrategy.tagMap);
-  return initialState;
+const init = (initialState: Game): GameWithTags => {
+  return getGameWithTags(initialState);
 };
 
 type Action =
@@ -46,7 +45,7 @@ type Action =
   | { type: "ADD_CATEGORY" }
   | { type: "RESET"; payload: { game: Game } };
 
-const reducer = (state: Game, action: Action): Game => {
+const reducer = (state: GameWithTags, action: Action): GameWithTags => {
   switch (action.type) {
     case "SET_NAME": {
       return { ...state, name: action.payload.name };
@@ -210,6 +209,12 @@ export const EditForm: FC<Props> = ({ game }: Props) => {
   } = state;
 
   const ids = playerIds.toString();
+
+  const editDatasetRequest = () => {
+    const encodedDataset = encodeURIComponent(JSON.stringify(getGameWithoutTags(state)));
+    return fetch(getEndpoint({ method: "moderation.datasetEdit", dataset: encodedDataset }), { method: "POST" });
+  };
+
   return (
     <form className={styles.form}>
       <div className={styles.bio}>
@@ -227,7 +232,8 @@ export const EditForm: FC<Props> = ({ game }: Props) => {
         </div>
       </div>
       <div className={styles.main}>
-        <h1 className={styles.title}>Основные</h1> <UploadFile id={id} title="Загрузить файл" />
+        <h1 className={styles.title}>Основные</h1>
+        {/*<UploadFile id={id} title="Загрузить файл" />*/}
         <Fieldset name="PlayersIDs" value={ids} changeHandler={setPlayerIds} placeholder="PlayersIDs" type="text" />
         <Checkbox title="isAvailableForAllUsers" clickHandler={setAvailableForAllUsers} isChecked={ids === ""} />
         <div className={styles.settings}>
@@ -322,9 +328,9 @@ export const EditForm: FC<Props> = ({ game }: Props) => {
           Отменить
         </Button>
         <Button
-          clickHandler={(e: MouseEvent<HTMLButtonElement>) => {
+          clickHandler={e => {
             e.preventDefault();
-            console.log(state);
+            editDatasetRequest();
           }}
           isAccent={true}
         >

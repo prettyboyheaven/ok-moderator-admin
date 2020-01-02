@@ -1,6 +1,19 @@
+@value colors: '../../styles/variables/colorVariables.pcss';
+@value subordinate-light, subordinate-medium, primary, secondary from colors;
+
+@value border-radiuses: '../../styles/variables/borderRadiusVariables.pcss';
+@value border-radius-xs from border-radiuses;
+
+@value spaces: '../../styles/variables/spaceVariables.pcss';
+@value space-xs, space-s from spaces;
+
 .title,
 .input {
   composes: title from "../../styles/content.pcss";
+}
+
+.container {
+  position: relative;
 }
 
 .input {
@@ -10,4 +23,21 @@
   box-sizing: border-box;
   width: 100%;
   font-weight: normal;
+}
+
+.input:disabled {
+  color: primary;
+  background-color: subordinate-light;
+  border: 1px solid subordinate-medium;
+}
+
+.copyButton {
+  color: secondary;
+  border-radius: border-radius-xs;
+  background-color: subordinate-medium;
+  padding: space-xs space-s;
+  position: absolute;
+  right: 3px;
+  top: 50%;
+  transform: translateY(-50%);
 }

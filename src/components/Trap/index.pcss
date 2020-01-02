@@ -1,0 +1,118 @@
+@value border-radiuses: "../../styles/variables/borderRadiusVariables.pcss";
+@value border-radius-s from border-radiuses;
+
+@value colors: "../../styles/variables/colorVariables.pcss";
+@value subordinate-light from colors;
+
+@value spaces: "../../styles/variables/spaceVariables.pcss";
+@value space-xs, space-s, space-m, space-xl from spaces;
+
+@value media: "../../styles/variables/mediaVariables.pcss";
+@value large from media;
+
+.trap {
+  border-radius: border-radius-s;
+  border: 1px solid subordinate-light;
+  padding: space-m space-xs;
+  margin-bottom: space-xl;
+}
+
+.trapShowPreview {
+  background-color: subordinate-light;
+  padding: space-m;
+}
+
+.trapShowPreview .settings {
+  display: none;
+}
+
+.trapShowPreview .preview {
+  display: block;
+}
+
+.preview {
+  display: none;
+}
+
+.closePreview {
+  margin-bottom: space-s;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: border-radius-s;
+}
+
+.settings {
+  display: grid;
+  grid-gap: space-m;
+}
+
+.title {
+  composes: title from "../../styles/content.pcss";
+  padding-bottom: 0;
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: max-content min-content;
+  grid-gap: 10px;
+  justify-content: center;
+  margin: 0 -5px;
+  border-top: 1px solid subordinate-light;
+  padding-top: space-m;
+  padding-bottom: 0;
+}
+
+.openPreview {
+  display: block;
+}
+
+@media (min-width: large) {
+  .trap {
+    padding: 0;
+    display: grid;
+    grid-template-columns: 57% 43%;
+    overflow: hidden;
+    border: none;
+    border-radius: 0;
+  }
+
+  .settings {
+    border: 1px solid subordinate-light;
+    border-top-left-radius: border-radius-s;
+    border-bottom-left-radius: border-radius-s;
+    padding: space-xl;
+  }
+
+  .preview {
+    display: block;
+    background-color: subordinate-light;
+    padding: space-xl;
+    border-top-right-radius: border-radius-s;
+    border-bottom-right-radius: border-radius-s;
+  }
+
+  .preview .title {
+    display: none;
+  }
+
+  .openPreview {
+    display: none;
+  }
+
+  .closePreview {
+    display: none;
+  }
+
+  .image {
+    max-height: 422px;
+  }
+
+  .controls {
+    margin: 0 -25px;
+    padding-top: space-xl;
+  }
+}

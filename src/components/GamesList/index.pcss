@@ -1,5 +1,5 @@
 @value colors: "../../styles/variables/colorVariables.pcss";
-@value primary, subordinate, secondary from colors;
+@value accent, accent-light, primary, subordinate, secondary from colors;
 
 @value spaces: "../../styles/variables/spaceVariables.pcss";
 @value space-xs, space-s, space-m, space-2xl from spaces;
@@ -58,7 +58,7 @@
   text-align: center;
   width: 100%;
   composes: xl-border-radius from "../../styles/borders.pcss";
-  composes: accent-lightest from "../../styles/colors.pcss";
+  background-color: accent-light;
   padding: 6px 0;
   z-index: 1;
   grid-area: progress;
@@ -70,7 +70,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  composes: accent from "../../styles/colors.pcss";
+  background-color: accent;
   composes: xl-border-radius from "../../styles/borders.pcss";
   height: 100%;
   z-index: -1;
