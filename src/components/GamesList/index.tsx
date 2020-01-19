@@ -27,6 +27,7 @@ interface GameProgress {
 interface Props {
   games: Game[];
   activeFilter: string;
+  refetch: () => void;
 }
 
 const GameName: FC<GameName> = ({ name, taskDescription }: GameName) => (
@@ -83,7 +84,7 @@ const GameProgress: FC<GameProgress> = ({ processedRecords, totalRecords }: Game
   );
 };
 
-export const GamesList: FC<Props> = ({ games, activeFilter }: Props) => {
+export const GamesList: FC<Props> = ({ games, activeFilter, refetch }: Props) => {
   if (!games.length) {
     return null;
   }
@@ -118,7 +119,7 @@ export const GamesList: FC<Props> = ({ games, activeFilter }: Props) => {
             lastUpdatedMillis={lastUpdatedMillis}
           />
           <GameProgress processedRecords={processedRecords} totalRecords={totalRecords} />
-          <ControlPanel game={game} />
+          <ControlPanel game={game} refetch={ refetch } />
         </li>
       );
     });

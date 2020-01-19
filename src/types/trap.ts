@@ -5,5 +5,6 @@ export type Trap = {
         datasetId: string;
         url: string;
         selectedTags: string[];
+        description: string;
     }
 }

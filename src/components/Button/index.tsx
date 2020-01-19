@@ -9,6 +9,7 @@ interface Props {
   isAccent?: boolean;
   isAccentLight?: boolean;
   isSubordinate?: boolean;
+  disabled: boolean;
 }
 
 export const Button: FC<Props> = ({
@@ -17,7 +18,8 @@ export const Button: FC<Props> = ({
   className,
   isAccent,
   isAccentLight,
-  isSubordinate
+  isSubordinate,
+  disabled
 }: Props) => {
   const buttonClassName = classNames(styles.button, className, {
     [styles.accent]: isAccent,
@@ -26,7 +28,7 @@ export const Button: FC<Props> = ({
   });
 
   return (
-    <button className={buttonClassName} onClick={clickHandler}>
+    <button className={buttonClassName} onClick={clickHandler} disabled={ disabled }>
       {children}
     </button>
   );

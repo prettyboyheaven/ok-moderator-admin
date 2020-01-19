@@ -1,12 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, useLocation } from "react-router-dom";
 import { Games } from "./pages/Games";
 import { Edit } from "./pages/Edit";
 import { Rules } from "./pages/Rules";
 import { Traps } from "./pages/Traps";
 
 const App = () => {
+  const { search } = useLocation();
+
   return (
     <>
       <Switch>

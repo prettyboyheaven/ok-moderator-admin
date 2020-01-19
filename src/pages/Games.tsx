@@ -26,6 +26,7 @@ export const Games = () => {
   const refetch = () => request.get(endPoint);
 
   const { datasets: games } = data;
+  console.log(games);
 
   return (
     <>
@@ -37,7 +38,7 @@ export const Games = () => {
         games={games}
         refetch={refetch}
       />
-      <GamesList games={games} activeFilter={activeFilter} />
+      <GamesList games={games} activeFilter={activeFilter} refetch={ refetch } />
     </>
   );
 };

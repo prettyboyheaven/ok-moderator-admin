@@ -6,13 +6,36 @@ import { ExternalLink } from "../ExternalLink";
 import { Button } from "../Button";
 import styles from "./index.pcss";
 import { Game } from "../../interfaces/game";
+import { getEndpoint } from "../../../utils/getEndpoint";
+import useFetch from "use-http/dist";
 
 type Props = {
   game: Game;
+  refetch: () => void;
 };
 
-const ControlPanel: FC<Props> = ({ game }: Props) => {
+enum gameMethods {
+  ACTIVATE = "moderation.datasetActivate",
+  PAUSE = "moderation.datasetPause",
+  DELETE = "moderation.datasetDrop"
+}
+
+const ControlPanel: FC<Props> = ({ game, refetch }: Props) => {
   const { id } = game;
+
+  // const handleActivateGame = createRequest(gameMethods.ACTIVATE);
+  // const handlePauseGame = createRequest(gameMethods.PAUSE);
+
+  const handleClick = (method: string) => {
+    const endpoint = getEndpoint({
+      method,
+      dataset_id: id
+    });
+
+    return fetch(endpoint)
+      .then(() => refetch())
+      .catch(err => alert("Что-то пошло не так: " + err));
+  };
 
   const chartsUrl = `https://charts.odkl.ru/reports?id=1330587&ModerationArenaOpStatParam1=${id}&filter=true`;
 
@@ -30,7 +53,7 @@ const ControlPanel: FC<Props> = ({ game }: Props) => {
           </Link>
         </li>
         <li>
-          <Button className={styles.control} clickHandler={() => null}>
+          <Button className={styles.control} clickHandler={ () => null }>
             <Icon name={PLAY} />
           </Button>
         </li>
