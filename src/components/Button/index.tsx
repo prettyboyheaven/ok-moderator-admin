@@ -9,7 +9,7 @@ interface Props {
   isAccent?: boolean;
   isAccentLight?: boolean;
   isSubordinate?: boolean;
-  disabled: boolean;
+  disabled?: boolean;
 }
 
 export const Button: FC<Props> = ({

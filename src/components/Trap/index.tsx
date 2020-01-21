@@ -1,4 +1,4 @@
-import React, { FC, useState, useReducer, useEffect } from "react";
+import React, { FC, useState } from "react";
 import classNames from "classnames";
 import { Trap as TrapType } from "../../types/trap";
 import styles from "./index.pcss";
@@ -10,27 +10,56 @@ import { Button } from "../Button";
 import { Icon } from "../Icon";
 import { CROSS, EYE, TRASH } from "../../constants/icons";
 import { getEndpoint } from "../../../utils/getEndpoint";
+import axios from "axios";
 
 interface Props {
   trap: TrapType;
   labelingStrategy: LabelingStrategy;
-  reFetch: () => void;
+  setFetchStatus: (fetchStatus: boolean) => void;
 }
 
-enum TrapTransforms {
-  TOGGLE_TAG = "TOGGLE_TAG",
-  RESET_TAGS = "RESET_TAGS",
-  CHANGE_DESCRIPTION = "CHANGE_DESCRIPTION"
+interface ModifyTrap {
+  type: string;
+  value?: string;
 }
 
-const Trap: FC<Props> = ({ trap, labelingStrategy, reFetch }: Props) => {
+const Trap: FC<Props> = ({ trap, labelingStrategy, setFetchStatus }: Props) => {
   const [previewStatus, setPreviewStatus] = useState(false);
-  const [isLoading, setLoadingStatus] = useState(false);
 
   const {
     id,
-    record: { selectedTags, url, datasetId, description }
+    record: { selectedTags, url, description, datasetId }
   } = trap;
+
+  const transformTrap = ({ type, value }: ModifyTrap): TrapType => {
+    const copiedTrap = { ...trap };
+    const record = { ...trap.record };
+    switch (type) {
+      case "TOGGLE_TAG": {
+        if (value) {
+          record.selectedTags = trap.record.selectedTags.includes(value)
+            ? trap.record.selectedTags.filter((selectedTag: string) => selectedTag !== value)
+            : [...trap.record.selectedTags, value];
+          copiedTrap.record = record;
+        }
+        return copiedTrap;
+      }
+      case "RESET_TAGS": {
+        record.selectedTags = [];
+        copiedTrap.record = record;
+        return copiedTrap;
+      }
+      case "CHANGE_DESCRIPTION": {
+        if (typeof value === "string") {
+          record.description = value.trim();
+          copiedTrap.record = record;
+        }
+        return copiedTrap;
+      }
+      default:
+        return copiedTrap;
+    }
+  };
 
   const endpoint = (trap: TrapType) =>
     getEndpoint({
@@ -43,45 +72,14 @@ const Trap: FC<Props> = ({ trap, labelingStrategy, reFetch }: Props) => {
       )
     });
 
-  const transformTrap = (type: string, value: string) => {
-    switch (type) {
-      case TrapTransforms.TOGGLE_TAG: {
-        const record = { ...trap.record };
-        record.selectedTags = trap.record.selectedTags.includes(value)
-          ? trap.record.selectedTags.filter((selectedTag: string) => selectedTag !== value)
-          : [...trap.record.selectedTags, value];
-        return { ...trap, record };
-      }
-      case TrapTransforms.RESET_TAGS: {
-        const record = { ...trap.record };
-        record.selectedTags = [];
-        return { ...trap, record };
-      }
-      case TrapTransforms.CHANGE_DESCRIPTION: {
-        const record = { ...trap.record };
-        record.description = value.trim();
-        return { ...trap, record };
-      }
-      default:
-        return trap;
-    }
-  };
-
-  const handleModifyTrap = (type: TrapTransforms, value: string) => {
-    setLoadingStatus(true);
-    const trap = transformTrap(type, value);
-    return fetch(endpoint(trap), { method: "POST" }).then(res => {
-      if (res.ok) {
-        reFetch()
+  const modifyTrapHandler = ({ type, value }: ModifyTrap) => {
+    const trap = transformTrap({ type, value });
+    axios.get(endpoint(trap)).then(res => {
+      if (res.data.success) {
+        setFetchStatus(true);
       }
     });
   };
-
-  // const modifyTrap = () => {
-  //   fetch(endpoint)
-  //       .then(res => console.log(res))
-  //       .catch(e => alert(`Ошибка при изменении ловушки: ${e}`))
-  // };
 
   const renderTags = () => {
     const { tagMap } = labelingStrategy;
@@ -93,10 +91,7 @@ const Trap: FC<Props> = ({ trap, labelingStrategy, reFetch }: Props) => {
         <li key={tag}>
           <Checkbox
             title={text}
-            clickHandler={() => {
-              handleModifyTrap(TrapTransforms.TOGGLE_TAG, tag);
-              // handleModifyTrap();
-            }}
+            clickHandler={() => modifyTrapHandler({ type: "TOGGLE_TAG", value: tag })}
             isChecked={isSelected}
           />
         </li>
@@ -110,30 +105,41 @@ const Trap: FC<Props> = ({ trap, labelingStrategy, reFetch }: Props) => {
   return (
     <div className={trapClass}>
       <div className={styles.settings}>
-        <Fieldset name="ID ловушки" value={id} disabled={true} withCopyButton={true} />
-        <Fieldset name="URL" value={url} disabled={true} withCopyButton={true} />
+        <Fieldset
+          name="ID ловушки"
+          value={id}
+          disabled={true}
+          withCopyButton={true}
+          type="text"
+          changeHandler={() => null}
+          placeholder="ID ловушки"
+        />
+        <Fieldset
+          name="URL"
+          value={url}
+          disabled={true}
+          withCopyButton={true}
+          type="text"
+          changeHandler={() => null}
+          placeholder="URL"
+        />
         <Textarea
           value={description}
           maxLength={100}
           id={id}
           rows={4}
-          blurHandler={(value: string) => {
-            handleModifyTrap(TrapTransforms.CHANGE_DESCRIPTION, value);
-          }}
+          blurHandler={value => modifyTrapHandler({ type: "CHANGE_DESCRIPTION", value })}
         />
         <div>
           <h1 className={styles.title}>
             Категории ловушки{" "}
-            <Button
-              clickHandler={() => handleModifyTrap(TrapTransforms.RESET_TAGS, "")}
-              disabled={isResetTagsButtonDisabled || isLoading}
-            >
+            <Button clickHandler={() => modifyTrapHandler({ type: "RESET_TAGS" })} disabled={isResetTagsButtonDisabled}>
               <Icon name={TRASH} />
             </Button>
           </h1>
           <ul>{renderTags()}</ul>
           <div className={styles.controls}>
-            <Button clickHandler={() => null} isSubordinate={true} disabled={isLoading}>
+            <Button clickHandler={ () => null} isSubordinate={true}>
               Удалить ловушку
             </Button>
             <Button className={styles.openPreview} clickHandler={() => setPreviewStatus(true)}>

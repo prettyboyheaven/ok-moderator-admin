@@ -1,60 +1,42 @@
-import React, {useEffect, useReducer} from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { getEndpoint } from "../../utils/getEndpoint";
-import useFetch from "use-http/dist";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { Button } from "../components/Button";
 import Trap from "../components/Trap";
 import { Trap as TrapType } from "../types/trap";
 
-const init = (initialTraps) => {
-  return { traps: initialTraps }
-};
-
-const reducer = (state, action) => {
-  switch (action.type) {
-    case 'GET_TRAPS': {
-      return {...state, traps: [...state.traps, action.payload.traps]}
-    }
-  }
-};
-
 export const Traps = props => {
   const { game } = props.location.state;
   const { id } = game;
-  const endPoint = getEndpoint({
+
+  const loadTrapsEndpoint = getEndpoint({
     method: "moderation.datasetTrapsGetList",
     dataset_id: id,
-    limit: 1
+    limit: 100
   });
 
+  const [traps, setTraps] = useState([]);
+  const [isNeedFetch, setFetchStatus] = useState(true);
 
+  const loadTraps = () => {
+    if (!isNeedFetch) {
+      return;
+    }
 
-  const [request, response] = useFetch(endPoint, { data: [] }, []);
-  const [state, dispatch] = useReducer(reducer, traps, init);
+    axios.get(loadTrapsEndpoint).then(res => {
+      const traps = res.data.traps_request;
+      setTraps(traps);
+      setFetchStatus(false);
+    });
+  };
 
-  const { loading, error } = request;
-  const { data } = response;
+  useEffect(loadTraps, [isNeedFetch]);
 
-
-  const reFetch = () => request.get(endPoint);
-
-  if (loading) {
-    return <p>...loading</p>;
-  }
-
-  if (error) {
-    return <p>error</p>;
-  }
-
-  const { traps_request: traps } = data;
   const { labelingStrategy } = game;
-
-
-  console.log(state);
-
   const renderTraps = traps.map((trap: TrapType) => (
-    <Trap key={trap.id} trap={trap} labelingStrategy={labelingStrategy} reFetch={ reFetch } />
+    <Trap key={trap.id} trap={trap} setFetchStatus={setFetchStatus} labelingStrategy={labelingStrategy} />
   ));
 
   return (

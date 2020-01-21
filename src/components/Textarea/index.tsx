@@ -10,7 +10,7 @@ type Props = {
 };
 
 const Textarea: FC<Props> = ({ maxLength, id, rows, value, blurHandler }: Props) => {
-  const [description, setDescription] = useState(value);
+  const [description, setDescription] = useState(value || '');
   const charactersLeft = maxLength - description.length;
 
   return (
