@@ -35,22 +35,29 @@ export const Traps = props => {
   useEffect(loadTraps, [isNeedFetch]);
 
   const { labelingStrategy } = game;
-  const renderTraps = traps.map((trap: TrapType) => (
-    <Trap key={trap.id} trap={trap} setFetchStatus={setFetchStatus} labelingStrategy={labelingStrategy} />
-  ));
+  const renderTraps = () => {
+    if (traps && traps.length) {
+      return traps.map((trap: TrapType) => (
+        <Trap key={trap.id} trap={trap} setFetchStatus={setFetchStatus} labelingStrategy={labelingStrategy} />
+      ));
+    }
+
+    return <p>Ловушки отсутствуют</p>;
+  };
 
   return (
     <>
       <Header />
-      {renderTraps}
-      <Footer>
-        <Button clickHandler={() => null} isSubordinate={true}>
-          Отменить
-        </Button>
-        <Button clickHandler={() => null} isAccent={true}>
-          Сохранить
-        </Button>
-      </Footer>
+      {renderTraps()}
+      /* Без футера так как изменения, не происходят по данным кнопкам */
+      {/*<Footer>*/}
+      {/*  <Button clickHandler={() => null} isSubordinate={true}>*/}
+      {/*    Отменить*/}
+      {/*  </Button>*/}
+      {/*  <Button clickHandler={() => null} isAccent={true}>*/}
+      {/*    Сохранить*/}
+      {/*  </Button>*/}
+      {/*</Footer>*/}
     </>
   );
 };

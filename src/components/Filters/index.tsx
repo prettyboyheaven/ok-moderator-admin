@@ -11,10 +11,10 @@ interface Props {
   activeFilter: string;
   setActiveFilter: (filter: string) => void;
   games: Game[];
-  refetch: () => void;
+  setFetchStatus: (status: boolean) => void;
 }
 
-export const Filters: FC<Props> = ({ filters, activeFilter, setActiveFilter, games, refetch }: Props) => {
+export const Filters: FC<Props> = ({ filters, activeFilter, setActiveFilter, games, setFetchStatus }: Props) => {
   const filtersKeys = Object.keys(filters);
 
   const renderFilters = filtersKeys.map((filter: string) => {
@@ -40,7 +40,7 @@ export const Filters: FC<Props> = ({ filters, activeFilter, setActiveFilter, gam
       <ul className={styles.filtersList}>
         {renderFilters}
         <li>
-          <Button clickHandler={refetch}>
+          <Button clickHandler={() => setFetchStatus(true)}>
             <Icon name={REFRESH} />
           </Button>
         </li>

@@ -1,32 +1,38 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useFetch from "use-http";
 import { Header } from "../components/Header";
 import { GamesList } from "../components/GamesList";
 import { Filters } from "../components/Filters";
 import { getEndpoint } from "../../utils/getEndpoint";
 import { filters } from "../enums/gameStateFilters";
+import { Game } from "../interfaces/game";
+import axios from "axios";
 
 export const Games = () => {
   const endPoint = getEndpoint({ method: "moderation.datasetGetList" });
+  const [games, setGames] = useState<Game[]>([]);
   const [activeFilter, setActiveFilter] = useState(Object.keys(filters)[1]);
+  const [isNeedFetch, setFetchStatus] = useState(true);
 
-  const [request, response] = useFetch(endPoint, { data: [] }, []);
+  const loadGames = () => {
+    if (!isNeedFetch) {
+      return;
+    }
+    axios.get(endPoint).then(res => {
+      if (res.data.datasets) {
+        setGames(res.data.datasets);
+        setFetchStatus(false);
+      } else {
+        alert("Что-то пошло не так...");
+      }
+    });
+  };
 
-  const { loading, error } = request;
-  const { data } = response;
+  useEffect(loadGames, [isNeedFetch]);
 
-  if (loading) {
-    return <p>...loading</p>;
+  if (!games.length) {
+    return null;
   }
-
-  if (error) {
-    return <p>error</p>;
-  }
-
-  const refetch = () => request.get(endPoint);
-
-  const { datasets: games } = data;
-  console.log(games);
 
   return (
     <>
@@ -36,9 +42,9 @@ export const Games = () => {
         activeFilter={activeFilter}
         setActiveFilter={setActiveFilter}
         games={games}
-        refetch={refetch}
+        setFetchStatus={setFetchStatus}
       />
-      <GamesList games={games} activeFilter={activeFilter} refetch={ refetch } />
+      <GamesList games={games} activeFilter={activeFilter} setFetchStatus={setFetchStatus} />
     </>
   );
 };

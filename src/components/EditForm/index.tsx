@@ -11,6 +11,7 @@ import { ITags } from "../../types/tags";
 import { Categories } from "../Categories";
 import UploadFile from "../UploadFile";
 import { getEndpoint } from "../../../utils/getEndpoint";
+import axios from 'axios';
 
 interface Props {
   game: Game;
@@ -208,11 +209,15 @@ export const EditForm: FC<Props> = ({ game }: Props) => {
     id
   } = state;
 
-  const ids = playerIds.toString();
+  const ids = playerIds && playerIds.toString();
 
   const editDatasetRequest = () => {
     const encodedDataset = encodeURIComponent(JSON.stringify(getGameWithoutTags(state)));
-    return fetch(getEndpoint({ method: "moderation.datasetEdit", dataset: encodedDataset }), { method: "POST" });
+    axios.get(getEndpoint({method: "moderation.datasetEdit", dataset: encodedDataset})).then(res => {
+      if (res.data.success) {
+        alert('Успешно обновлено')
+      }
+    })
   };
 
   return (

@@ -1,3 +1,22 @@
+@value spaces: "../../styles/variables/spaceVariables.pcss";
+@value space-s, space-m from spaces;
+
+@value border-radiuses: '../../styles/variables/borderRadiusVariables.pcss';
+@value border-radius-s from border-radiuses;
+
+@value colors: '../../styles/variables/colorVariables.pcss';
+@value white from colors;
+
 .creationMenu {
   composes: dropdown from "../../styles/box-shadows.pcss";
+  padding: space-m;
+  border-radius: border-radius-s;
+  border: 1px solid #ddd;
+  background-color: white;
+  z-index: 2;
+}
+
+.button {
+  display: block;
+  padding: space-s;
 }

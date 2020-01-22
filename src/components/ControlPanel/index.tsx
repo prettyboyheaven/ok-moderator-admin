@@ -7,11 +7,11 @@ import { Button } from "../Button";
 import styles from "./index.pcss";
 import { Game } from "../../interfaces/game";
 import { getEndpoint } from "../../../utils/getEndpoint";
-import useFetch from "use-http/dist";
+import axios from 'axios';
 
 type Props = {
   game: Game;
-  refetch: () => void;
+  setFetchStatus: (status: boolean) => void;
 };
 
 enum gameMethods {
@@ -20,7 +20,8 @@ enum gameMethods {
   DELETE = "moderation.datasetDrop"
 }
 
-const ControlPanel: FC<Props> = ({ game, refetch }: Props) => {
+const ControlPanel: FC<Props> = ({ game, setFetchStatus }: Props) => {
+
   const { id } = game;
 
   // const handleActivateGame = createRequest(gameMethods.ACTIVATE);
@@ -32,10 +33,17 @@ const ControlPanel: FC<Props> = ({ game, refetch }: Props) => {
       dataset_id: id
     });
 
-    return fetch(endpoint)
-      .then(() => refetch())
-      .catch(err => alert("Что-то пошло не так: " + err));
+    axios.get(endpoint).then(res => {
+      if (res.data.success) {
+        setFetchStatus(true);
+      } else {
+        alert('Что-то пошло не так...')
+      }
+    });
   };
+
+  const activateGameHandler = () => handleClick(gameMethods.ACTIVATE);
+  const pauseGameHandler = () => handleClick(gameMethods.PAUSE);
 
   const chartsUrl = `https://charts.odkl.ru/reports?id=1330587&ModerationArenaOpStatParam1=${id}&filter=true`;
 
@@ -53,12 +61,12 @@ const ControlPanel: FC<Props> = ({ game, refetch }: Props) => {
           </Link>
         </li>
         <li>
-          <Button className={styles.control} clickHandler={ () => null }>
+          <Button className={styles.control} clickHandler={ activateGameHandler }>
             <Icon name={PLAY} />
           </Button>
         </li>
         <li>
-          <Button className={styles.control} clickHandler={() => null}>
+          <Button className={styles.control} clickHandler={ pauseGameHandler }>
             <Icon name={PAUSE} />
           </Button>
         </li>
