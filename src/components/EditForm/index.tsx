@@ -1,5 +1,5 @@
 import React, { FC, useReducer, MouseEvent } from "react";
-import { Game, GameWithTags } from "../../interfaces/game";
+import { Game } from "../../interfaces/game";
 import { Fieldset } from "../Fieldset";
 import styles from "./index.pcss";
 import { Image } from "../Image";
@@ -11,13 +11,13 @@ import { ITags } from "../../types/tags";
 import { Categories } from "../Categories";
 import UploadFile from "../UploadFile";
 import { getEndpoint } from "../../../utils/getEndpoint";
-import axios from 'axios';
+import axios from "axios";
 
 interface Props {
   game: Game;
 }
 
-const init = (initialState: Game): GameWithTags => {
+const init = (initialState: Game): Game => {
   return getGameWithTags(initialState);
 };
 
@@ -46,7 +46,7 @@ type Action =
   | { type: "ADD_CATEGORY" }
   | { type: "RESET"; payload: { game: Game } };
 
-const reducer = (state: GameWithTags, action: Action): GameWithTags => {
+const reducer = (state: Game, action: Action): Game => {
   switch (action.type) {
     case "SET_NAME": {
       return { ...state, name: action.payload.name };
@@ -109,22 +109,36 @@ const reducer = (state: GameWithTags, action: Action): GameWithTags => {
       return { ...state, multiSelectEnabled: !state.multiSelectEnabled };
     }
     case "SET_CATEGORY_CODE": {
-      const tags = { ...state.tags };
+      const tags = { ...state.tags } || null;
+      if (!tags) {
+        return state;
+      }
+
       tags[action.payload.id].categoryCode = action.payload.categoryCode;
       return { ...state, tags };
     }
     case "SET_CATEGORY_VALUE": {
-      const tags = { ...state.tags };
+      const tags = { ...state.tags } || null;
+      if (!tags) {
+        return state;
+      }
+
       tags[action.payload.id].categoryValue = action.payload.categoryValue;
       return { ...state, tags };
     }
     case "DELETE_CATEGORY": {
-      const tags = { ...state.tags };
+      const tags = { ...state.tags } || null;
+      if (!tags) {
+        return state;
+      }
       const { [action.payload.id]: category, ...withOutCategoryForDelete } = tags;
       return { ...state, tags: withOutCategoryForDelete };
     }
     case "ADD_CATEGORY": {
-      const tags = { ...state.tags };
+      const tags = { ...state.tags } || null;
+      if (!tags) {
+        return state;
+      }
       const tagId = Object.keys(tags).length + 1;
       tags[tagId] = {
         categoryCode: "",
@@ -205,19 +219,21 @@ export const EditForm: FC<Props> = ({ game }: Props) => {
     percentToPass = 0,
     amountOfTrainTasks = 0,
     multiSelectEnabled,
-    tags,
     id
   } = state;
+
+  const tags = "tags" in state ? state.tags : null;
 
   const ids = playerIds && playerIds.toString();
 
   const editDatasetRequest = () => {
-    const encodedDataset = encodeURIComponent(JSON.stringify(getGameWithoutTags(state)));
-    axios.get(getEndpoint({method: "moderation.datasetEdit", dataset: encodedDataset})).then(res => {
+    const game = "tags" in state ? getGameWithoutTags(state) : state;
+    const encodedDataset = encodeURIComponent(JSON.stringify(game));
+    axios.get(getEndpoint({ method: "moderation.datasetEdit", dataset: encodedDataset })).then(res => {
       if (res.data.success) {
-        alert('Успешно обновлено')
+        alert("Успешно обновлено");
       }
-    })
+    });
   };
 
   return (
@@ -237,8 +253,10 @@ export const EditForm: FC<Props> = ({ game }: Props) => {
         </div>
       </div>
       <div className={styles.main}>
-        <h1 className={styles.title}>Основные</h1>
-        {/*<UploadFile id={id} title="Загрузить файл" />*/}
+        <div className={styles.titleContainer}>
+          <h1 className={styles.title}>Основные</h1>
+          <UploadFile id={id} title="Загрузить файл" />
+        </div>
         <Fieldset name="PlayersIDs" value={ids} changeHandler={setPlayerIds} placeholder="PlayersIDs" type="text" />
         <Checkbox title="isAvailableForAllUsers" clickHandler={setAvailableForAllUsers} isChecked={ids === ""} />
         <div className={styles.settings}>
@@ -313,15 +331,17 @@ export const EditForm: FC<Props> = ({ game }: Props) => {
           />
         </div>
       </div>
-      <Categories
-        deleteCategory={deleteCategory}
-        setCategoryCode={setCategoryCode}
-        setCategoryValue={setCategoryValue}
-        multiSelectEnabled={multiSelectEnabled}
-        setMultiSelectEnabled={setMultiSelectEnabled}
-        addCategory={addCategory}
-        tags={tags}
-      />
+      {tags && (
+        <Categories
+          deleteCategory={deleteCategory}
+          setCategoryCode={setCategoryCode}
+          setCategoryValue={setCategoryValue}
+          multiSelectEnabled={multiSelectEnabled}
+          setMultiSelectEnabled={setMultiSelectEnabled}
+          addCategory={addCategory}
+          tags={tags}
+        />
+      )}
       <Footer>
         <Button
           clickHandler={(e: MouseEvent<HTMLButtonElement>) => {

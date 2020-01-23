@@ -38,12 +38,26 @@
   justify-items: center;
 }
 
+.titleContainer {
+  display: grid;
+  grid-template-columns: min-content auto;
+  margin-bottom: space-m;
+  grid-gap: space-m;
+  align-items: center;
+}
+
 .title {
   composes: title-large from "../../styles/content.pcss";
   padding-bottom: 0;
   margin-bottom: space-m;
   grid-column-start: 1;
   grid-column-end: 3;
+}
+
+.titleContainer .title {
+  grid-column-start: 1;
+  grid-column-end: 1;
+  margin-bottom: 0;
 }
 
 .settings {

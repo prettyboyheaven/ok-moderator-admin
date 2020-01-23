@@ -10,19 +10,19 @@ type Props = {
 };
 
 const Textarea: FC<Props> = ({ maxLength, id, rows, value, blurHandler }: Props) => {
-  const [description, setDescription] = useState(value || '');
+  const [description, setDescription] = useState(value || "");
   const charactersLeft = maxLength - description.length;
 
   return (
     <div className={styles.container}>
       <legend className={styles.title}>Описание</legend>
       <textarea
-        onBlur={ () => blurHandler(description) }
+        onBlur={() => blurHandler(description)}
         value={description}
         className={styles.textarea}
         onChange={(e: ChangeEvent<HTMLTextAreaElement>) => setDescription(e.target.value)}
         id={id}
-        rows={ rows }
+        rows={rows}
         maxLength={maxLength}
         placeholder="Добавьте описание"
       />

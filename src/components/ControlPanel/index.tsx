@@ -2,12 +2,12 @@ import React, { FC } from "react";
 import { Icon } from "../Icon";
 import { Link } from "react-router-dom";
 import { CHARTS, EDIT, PAUSE, PLAY, TRASH, RULES, TRAPS, DOWNLOAD } from "../../constants/icons";
-import { ExternalLink } from "../ExternalLink";
+import ExternalLink from "../ExternalLink";
 import { Button } from "../Button";
 import styles from "./index.pcss";
 import { Game } from "../../interfaces/game";
 import { getEndpoint } from "../../../utils/getEndpoint";
-import axios from 'axios';
+import axios from "axios";
 
 type Props = {
   game: Game;
@@ -21,7 +21,6 @@ enum gameMethods {
 }
 
 const ControlPanel: FC<Props> = ({ game, setFetchStatus }: Props) => {
-
   const { id } = game;
 
   // const handleActivateGame = createRequest(gameMethods.ACTIVATE);
@@ -37,13 +36,14 @@ const ControlPanel: FC<Props> = ({ game, setFetchStatus }: Props) => {
       if (res.data.success) {
         setFetchStatus(true);
       } else {
-        alert('Что-то пошло не так...')
+        alert("Что-то пошло не так...");
       }
     });
   };
 
   const activateGameHandler = () => handleClick(gameMethods.ACTIVATE);
   const pauseGameHandler = () => handleClick(gameMethods.PAUSE);
+  const deleteGameHandler = () => handleClick(gameMethods.DELETE);
 
   const chartsUrl = `https://charts.odkl.ru/reports?id=1330587&ModerationArenaOpStatParam1=${id}&filter=true`;
 
@@ -61,17 +61,17 @@ const ControlPanel: FC<Props> = ({ game, setFetchStatus }: Props) => {
           </Link>
         </li>
         <li>
-          <Button className={styles.control} clickHandler={ activateGameHandler }>
+          <Button className={styles.control} clickHandler={activateGameHandler}>
             <Icon name={PLAY} />
           </Button>
         </li>
         <li>
-          <Button className={styles.control} clickHandler={ pauseGameHandler }>
+          <Button className={styles.control} clickHandler={pauseGameHandler}>
             <Icon name={PAUSE} />
           </Button>
         </li>
         <li>
-          <Button className={styles.control} clickHandler={() => null}>
+          <Button className={styles.control} clickHandler={deleteGameHandler}>
             <Icon name={TRASH} />
           </Button>
         </li>

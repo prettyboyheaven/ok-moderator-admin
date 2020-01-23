@@ -1,24 +1,15 @@
-import { Game, GameWithTags } from "../src/interfaces/game";
+import { Game } from "../src/interfaces/game";
 import { ITags } from "../src/types/tags";
 
 type TagMap = Game["labelingStrategy"]["tagMap"];
 
-export const tagsToArray = (tags: TagMap): ITags => {
-  const result: ITags = {};
-
-  Object.keys(tags).map((tag, index) => {
-    result[index] = {
-      categoryCode: tag,
-      categoryValue: tags[tag]
-    };
-  });
-
-  return result;
-};
-
-export const getGameWithTags = (game: Game): GameWithTags => {
+export const getGameWithTags = (game: Game): Game => {
   const result: ITags = {};
   const tags = game.labelingStrategy.tagMap;
+
+  if (!tags) {
+    return game;
+  }
 
   Object.keys(tags).map((tag, index) => {
     result[index] = {
@@ -30,8 +21,13 @@ export const getGameWithTags = (game: Game): GameWithTags => {
   return { ...game, tags: result };
 };
 
-export const getGameWithoutTags = (game: GameWithTags): Game => {
+export const getGameWithoutTags = (game: Game): Game => {
   const { tags, ...gameWithoutTags } = game;
+
+  if (!tags) {
+    return gameWithoutTags;
+  }
+
   const result: TagMap = {};
 
   Object.keys(tags).map(tag => {

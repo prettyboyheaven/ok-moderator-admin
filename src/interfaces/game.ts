@@ -1,4 +1,4 @@
-import {ITags} from "../types/tags";
+import { ITags } from "../types/tags";
 import { LabelingStrategy } from "../types/labelingStrategy";
 
 export interface Game {
@@ -27,8 +27,5 @@ export interface Game {
   multiSelectEnabled: boolean;
   createdMillis: string;
   lastUpdatedMillis: string;
-}
-
-export interface GameWithTags extends Game {
-  tags: ITags
+  tags?: ITags
 }

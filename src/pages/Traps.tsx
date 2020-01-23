@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { RouteComponentProps } from "react-router-dom";
 import axios from "axios";
 import { getEndpoint } from "../../utils/getEndpoint";
 import { Header } from "../components/Header";
@@ -7,7 +8,7 @@ import { Button } from "../components/Button";
 import Trap from "../components/Trap";
 import { Trap as TrapType } from "../types/trap";
 
-export const Traps = props => {
+export const Traps = (props: RouteComponentProps) => {
   const { game } = props.location.state;
   const { id } = game;
 
@@ -36,6 +37,10 @@ export const Traps = props => {
 
   const { labelingStrategy } = game;
   const renderTraps = () => {
+    if (isNeedFetch) {
+      return <p>Загрузка...</p>
+    }
+
     if (traps && traps.length) {
       return traps.map((trap: TrapType) => (
         <Trap key={trap.id} trap={trap} setFetchStatus={setFetchStatus} labelingStrategy={labelingStrategy} />
@@ -49,7 +54,6 @@ export const Traps = props => {
     <>
       <Header />
       {renderTraps()}
-      /* Без футера так как изменения, не происходят по данным кнопкам */
       {/*<Footer>*/}
       {/*  <Button clickHandler={() => null} isSubordinate={true}>*/}
       {/*    Отменить*/}

@@ -60,7 +60,7 @@ export const Categories: FC<Props> = ({
       <h1 className={styles.title}>Категории для разметки</h1>
       <Checkbox title="Несколько категорий" clickHandler={setMultiSelectEnabled} isChecked={multiSelectEnabled} />
       <h2 className={styles.subtitle}>Категории</h2>
-      <ul className={styles.list}>{categories}</ul>
+      {Object.keys(categories).length > 0 && <ul className={styles.list}>{categories}</ul>}
       <Button
         className={styles.button}
         clickHandler={(e: MouseEvent<HTMLButtonElement>) => {

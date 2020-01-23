@@ -40,7 +40,8 @@ import {
   CHECKBOX_SELECTED,
   PLUS,
   REFRESH,
-  EYE, CROSS
+  EYE,
+  CROSS
 } from "../../constants/icons";
 import styles from "./index.pcss";
 

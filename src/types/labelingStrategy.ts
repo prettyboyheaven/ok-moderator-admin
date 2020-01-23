@@ -1,6 +1,6 @@
 export interface LabelingStrategy {
     type: string;
-    tagMap: {
+    tagMap?: {
         [key: string]: string;
     }
 }

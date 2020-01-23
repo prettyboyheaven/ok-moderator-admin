@@ -4,10 +4,16 @@ import { EditForm } from "../components/EditForm";
 import styles from "../styles/page.pcss";
 import { getEndpoint } from "../../utils/getEndpoint";
 import axios from "axios";
+import { RouteComponentProps } from "react-router";
+import { Game } from "../interfaces/game";
 
-export const Edit = props => {
+interface Props {
+  id: string;
+}
+
+export const Edit = (props: RouteComponentProps<Props>) => {
   const id = props.match.params.id;
-  const [game, setGame] = useState(null);
+  const [game, setGame] = useState<Game | null>(null);
 
   const endPoint = getEndpoint({ method: "moderation.datasetGet", dataset_id: id });
 

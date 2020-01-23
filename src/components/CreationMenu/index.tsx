@@ -4,21 +4,23 @@ import { joinClasses } from "../../../utils/joinClasses";
 import { Button } from "../Button";
 import { getEndpoint } from "../../../utils/getEndpoint";
 import axios from "axios";
+import { Game } from "../../interfaces/game";
 
-interface IProps {
+interface Props {
   className: string;
 }
 
-const createGame = (gameData) =>  getEndpoint({
-  method: "moderation.datasetCreate",
-  dataset: encodeURIComponent(
-    JSON.stringify(gameData)
-  )
-});
+type GameInitialData = Pick<Game, "name" | "labelingStrategy">;
 
-export const CreationMenu: FC<IProps> = props => {
+const createGame = (gameData: GameInitialData) =>
+  getEndpoint({
+    method: "moderation.datasetCreate",
+    dataset: encodeURIComponent(JSON.stringify(gameData))
+  });
+
+export const CreationMenu: FC<Props> = props => {
   const { className } = props;
-  const [gameType, setGameType] = useState(null);
+  const [gameType, setGameType] = useState<GameInitialData | null>(null);
 
   useEffect(() => {
     if (!gameType) {
@@ -28,17 +30,17 @@ export const CreationMenu: FC<IProps> = props => {
       if (res.data.dataset_id) {
         window.location.href = `/edit/${res.data.dataset_id}`;
       } else {
-        alert('Что-то пошло не так')
+        alert("Что-то пошло не так");
       }
     });
   }, [gameType]);
 
   const createClassificationGame = () => {
-    setGameType({ name: "Классификация", labelingStrategy: { type: "CLASSIFICATION", tagMap: {} } })
+    setGameType({ name: "Классификация", labelingStrategy: { type: "CLASSIFICATION" } });
   };
 
   const createInputTextGame = () => {
-    setGameType({name: "Ввод текста", labelingStrategy: { type: "INPUT_TEXT", tagMap: {} }})
+    setGameType({ name: "Ввод текста", labelingStrategy: { type: "INPUT_TEXT" } });
   };
 
   return (

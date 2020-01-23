@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import styles from "./index.pcss";
 import { Button } from "../Button";
 
@@ -16,9 +16,10 @@ export const Fieldset = ({ name, value, changeHandler, placeholder, type, disabl
   const renderInput = () => {
     if (withCopyButton && disabled) {
       const copyText = () => {
-        navigator.clipboard.writeText(value as string)
-            .then(() => alert(`Значение: ${value} успешно скопировано`))
-            .catch((err) => alert(`Что-то пошло не так: ${err}`))
+        navigator.clipboard
+          .writeText(value as string)
+          .then(() => alert(`Значение: ${value} успешно скопировано`))
+          .catch(err => alert(`Что-то пошло не так: ${err}`));
       };
 
       return (

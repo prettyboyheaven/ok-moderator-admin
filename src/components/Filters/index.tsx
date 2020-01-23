@@ -14,7 +14,13 @@ interface Props {
   setFetchStatus: (status: boolean) => void;
 }
 
-export const Filters: FC<Props> = ({ filters, activeFilter, setActiveFilter, games, setFetchStatus }: Props) => {
+export const Filters: FC<Props> = ({
+  filters,
+  activeFilter,
+  setActiveFilter,
+  games,
+  setFetchStatus
+}: Props) => {
   const filtersKeys = Object.keys(filters);
 
   const renderFilters = filtersKeys.map((filter: string) => {

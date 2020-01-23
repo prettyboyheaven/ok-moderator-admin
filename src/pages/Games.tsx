@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import useFetch from "use-http";
 import { Header } from "../components/Header";
 import { GamesList } from "../components/GamesList";
 import { Filters } from "../components/Filters";
@@ -29,6 +28,10 @@ export const Games = () => {
   };
 
   useEffect(loadGames, [isNeedFetch]);
+
+  if (isNeedFetch) {
+    return <p>Загрузка...</p>
+  }
 
   if (!games.length) {
     return null;

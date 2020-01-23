@@ -139,7 +139,7 @@ const Trap: FC<Props> = ({ trap, labelingStrategy, setFetchStatus }: Props) => {
           </h1>
           <ul>{renderTags()}</ul>
           <div className={styles.controls}>
-            <Button clickHandler={ () => null} isSubordinate={true}>
+            <Button clickHandler={() => null} isSubordinate={true}>
               Удалить ловушку
             </Button>
             <Button className={styles.openPreview} clickHandler={() => setPreviewStatus(true)}>

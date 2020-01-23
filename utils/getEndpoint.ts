@@ -6,9 +6,9 @@ interface Params {
 }
 
 export const getEndpoint = ({ method, ...rest }: Params): string => {
-   // const { searchParams } = new URL(window.location.href);
+  // const { searchParams } = new URL(window.location.href);
 
-   const { searchParams } = new URL('http://localhost:1234?container=true&web_server=https%3A%2F%2Ftest.ok.ru&first_start=0&payment_promo_active=true&logged_user_id=577600345987&sig=780e484ebfa296c9c7db0272df218608&new_sig=1&apiconnection=1277040896_1579694901917&authorized=1&session_key=-s-dOUGkzJq2PUjGvNowSuijuIqzLv-iutt.zvfduJRaPumeUOq4OzFgTtw5wunizMx4yTGgxHNWSuh-yuo4SufFVqe&clientLog=0&session_secret_key=610f2511e5f48b422bffc464cea53e5d&auth_sig=63dec06c9d1f23489dc68a8a2319ac21&api_server=https%3A%2F%2Fapitest.ok.ru%2F&ip_geo_location=RU%2C66%2CSaint%20Petersburg&application_key=CBAKBPBNEBABABABA');
+   const { searchParams } = new URL('http://localhost:1234/?container=true&web_server=https%3A%2F%2Fok.ru&first_start=0&logged_user_id=577600345987&sig=cc7e1a817a30cada367e0d5c13bc387b&new_sig=1&apiconnection=1277041152_1579804248341&authorized=1&session_key=-s-9I5h6n7J8I6d0PfwZh6f0nbwCk2e1u-QbjzecPeReKajbPbL-iaf3vXwbo5DboZtbK1e5v6Mai3d.qYybKef3t88&clientLog=0&session_secret_key=08adb45bdd684ea9e35328c61c9a2732&auth_sig=351a02f62a6f8f877230728b4bcd921f&api_server=https://api.ok.ru/&ip_geo_location=RU%2C66%2CSaint%20Petersburg&application_key=CBALBPBNEBABABABA');
 
   const appParams = {
     api_server: searchParams.get("api_server") || "",

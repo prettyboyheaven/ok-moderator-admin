@@ -119,7 +119,7 @@ export const GamesList: FC<Props> = ({ games, activeFilter, setFetchStatus }: Pr
             lastUpdatedMillis={lastUpdatedMillis}
           />
           <GameProgress processedRecords={processedRecords} totalRecords={totalRecords} />
-          <ControlPanel game={game} setFetchStatus={ setFetchStatus } />
+          <ControlPanel game={game} setFetchStatus={setFetchStatus} />
         </li>
       );
     });

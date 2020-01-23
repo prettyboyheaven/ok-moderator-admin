@@ -6,10 +6,12 @@ interface Props {
   url: string;
 }
 
-export const ExternalLink: FC<Props> = ({ children, url }: Props) => {
+const ExternalLink: FC<Props> = ({ children, url }: Props) => {
   return (
     <a className={styles.link} href={url} target="_blank">
       {children}
     </a>
   );
 };
+
+export default ExternalLink;
