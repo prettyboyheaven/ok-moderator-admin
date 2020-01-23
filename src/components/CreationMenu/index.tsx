@@ -36,7 +36,7 @@ export const CreationMenu: FC<Props> = props => {
   }, [gameType]);
 
   const createClassificationGame = () => {
-    setGameType({ name: "Классификация", labelingStrategy: { type: "CLASSIFICATION" } });
+    setGameType({ name: "Классификация", labelingStrategy: { type: "CLASSIFICATION", tagMap: {} } });
   };
 
   const createInputTextGame = () => {

@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@parcel/transformer-babel": "^2.0.0-alpha.3",
     "@svgr/parcel-plugin-svgr": "^4.3.3",
     "@types/classnames": "^2.2.9",
     "axios": "^0.19.1",
