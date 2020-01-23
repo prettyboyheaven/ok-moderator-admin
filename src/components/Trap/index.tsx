@@ -83,10 +83,15 @@ const Trap: FC<Props> = ({ trap, labelingStrategy, setFetchStatus }: Props) => {
 
   const renderTags = () => {
     const { tagMap } = labelingStrategy;
-    const keys = Object.keys(tagMap);
+    const keys = tagMap && Object.keys(tagMap);
+
+    if (!keys) {
+      return null;
+    }
+
     return keys.map((tag: string) => {
       const isSelected = selectedTags.includes(tag);
-      const text = tag + " | " + tagMap[tag];
+      const text = tag + " | " + (tagMap && tagMap[tag]);
       return (
         <li key={tag}>
           <Checkbox
