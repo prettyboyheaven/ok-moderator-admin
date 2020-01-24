@@ -1,7 +1,7 @@
-@value spaces: "../../styles/variables/spaceVariables.pcss";
+@value spaces: "../../styles/variables/spaceVariables.css";
 @value space-s, space-m, space-3xl, space-4xl from spaces;
 
-@value media: "../../styles/variables/mediaVariables.pcss";
+@value media: "../../styles/variables/mediaVariables.css";
 @value large from media;
 
 .bio,
@@ -31,8 +31,8 @@
   height: 128px;
   background-position: center;
   background-repeat: no-repeat;
-  composes: accent-lightest from "../../styles/colors.pcss";
-  composes: m-border-radius from "../../styles/borders.pcss";
+  composes: accent-lightest from "../../styles/colors.css";
+  composes: m-border-radius from "../../styles/borders.css";
   display: grid;
   align-items: center;
   justify-items: center;
@@ -47,7 +47,7 @@
 }
 
 .title {
-  composes: title-large from "../../styles/content.pcss";
+  composes: title-large from "../../styles/content.css";
   padding-bottom: 0;
   margin-bottom: space-m;
   grid-column-start: 1;

@@ -1,15 +1,15 @@
-@value colors: '../../styles/variables/colorVariables.pcss';
+@value colors: '../../styles/variables/colorVariables.css';
 @value subordinate-light, subordinate-medium, primary, secondary from colors;
 
-@value border-radiuses: '../../styles/variables/borderRadiusVariables.pcss';
+@value border-radiuses: '../../styles/variables/borderRadiusVariables.css';
 @value border-radius-xs from border-radiuses;
 
-@value spaces: '../../styles/variables/spaceVariables.pcss';
+@value spaces: '../../styles/variables/spaceVariables.css';
 @value space-xs, space-s from spaces;
 
 .title,
 .input {
-  composes: title from "../../styles/content.pcss";
+  composes: title from "../../styles/content.css";
 }
 
 .container {
@@ -17,8 +17,8 @@
 }
 
 .input {
-  composes: secondary-color from "../../styles/colors.pcss";
-  composes: input-border from "../../styles/borders.pcss";
+  composes: secondary-color from "../../styles/colors.css";
+  composes: input-border from "../../styles/borders.css";
   padding: 7px;
   box-sizing: border-box;
   width: 100%;

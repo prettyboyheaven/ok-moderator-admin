@@ -1,12 +1,12 @@
-@value spaces: '../../styles/variables/spaceVariables.pcss';
+@value spaces: '../../styles/variables/spaceVariables.css';
 @value space-m from spaces;
 
-@value colors: '../../styles/variables/colorVariables.pcss';
+@value colors: '../../styles/variables/colorVariables.css';
 @value accent-light, accent from colors;
 
 .title {
-  composes: mobile-title-large from "../../styles/fonts.pcss";
-  composes: accent-darkest-color from "../../styles/colors.pcss";
+  composes: mobile-title-large from "../../styles/fonts.css";
+  composes: accent-darkest-color from "../../styles/colors.css";
   font-weight: bold;
   margin-bottom: space-m;
   grid-column-start: 1;
@@ -14,7 +14,7 @@
 }
 
 .subtitle {
-  composes: subtitle from "../../styles/texts.pcss";
+  composes: subtitle from "../../styles/texts.css";
 }
 
 .list {

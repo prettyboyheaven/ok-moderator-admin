@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
-import styles from "./index.pcss";
+import styles from "./index.css";
 import { joinClasses } from "../../../utils/joinClasses";
 import { Button } from "../Button";
 import { getEndpoint } from "../../../utils/getEndpoint";

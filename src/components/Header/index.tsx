@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "../Button";
 import { CreationMenu } from "../CreationMenu";
-import styles from "./index.pcss";
+import styles from "./index.css";
 import { Link } from "react-router-dom";
 import { Icon } from "../Icon";
 import { HOME, TRIANGLE_CLOSED, TRIANGLE_OPENED } from "../../constants/icons";

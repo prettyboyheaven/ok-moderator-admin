@@ -1,4 +1,4 @@
-@value colors: "colorVariables.pcss";
+@value colors: "colorVariables.css";
 @value accent, primary, subordinate from colors;
 
 .accent-color {

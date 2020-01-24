@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { Game } from "../../interfaces/game";
 import { Icon } from "../Icon";
 import { CAMERA } from "../../constants/icons";
-import styles from "./index.pcss";
+import styles from "./index.css";
 
 interface Props {
   className?: string;

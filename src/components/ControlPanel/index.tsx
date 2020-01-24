@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { CHARTS, EDIT, PAUSE, PLAY, TRASH, RULES, TRAPS, DOWNLOAD } from "../../constants/icons";
 import ExternalLink from "../ExternalLink";
 import { Button } from "../Button";
-import styles from "./index.pcss";
+import styles from "./index.css";
 import { Game } from "../../interfaces/game";
 import { getEndpoint } from "../../../utils/getEndpoint";
 import axios from "axios";

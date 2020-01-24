@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { Icon } from "../Icon";
 import { CHECKBOX, CHECKBOX_SELECTED } from "../../constants/icons";
-import styles from "./index.pcss";
+import styles from "./index.css";
 import { Button } from "../Button";
 
 interface Props {

@@ -1,14 +1,14 @@
-@value spaces: "../../styles/variables/spaceVariables.pcss";
+@value spaces: "../../styles/variables/spaceVariables.css";
 @value space-s, space-m from spaces;
 
-@value border-radiuses: '../../styles/variables/borderRadiusVariables.pcss';
+@value border-radiuses: '../../styles/variables/borderRadiusVariables.css';
 @value border-radius-s from border-radiuses;
 
-@value colors: '../../styles/variables/colorVariables.pcss';
+@value colors: '../../styles/variables/colorVariables.css';
 @value white from colors;
 
 .creationMenu {
-  composes: dropdown from "../../styles/box-shadows.pcss";
+  composes: dropdown from "../../styles/box-shadows.css";
   padding: space-m;
   border-radius: border-radius-s;
   border: 1px solid #ddd;

@@ -1,7 +1,7 @@
-@value colors: "../../styles/variables/colorVariables.pcss";
+@value colors: "../../styles/variables/colorVariables.css";
 @value accent, subordinate, primary from colors;
 
-@value spaces: "../../styles/variables/spaceVariables.pcss";
+@value spaces: "../../styles/variables/spaceVariables.css";
 @value space-s, space-m, space-xl from spaces;
 
 .filtersList {

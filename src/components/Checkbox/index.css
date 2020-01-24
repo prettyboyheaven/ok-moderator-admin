@@ -7,7 +7,7 @@
 }
 
 .title {
-  composes: accent-darkest-color from "../../styles/colors.pcss";
-  composes: mobile-title from "../../styles/fonts.pcss";
+  composes: accent-darkest-color from "../../styles/colors.css";
+  composes: mobile-title from "../../styles/fonts.css";
   padding-left: 10px;
 }

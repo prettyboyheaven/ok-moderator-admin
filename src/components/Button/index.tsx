@@ -1,5 +1,5 @@
 import React, { FC, ReactNode, MouseEvent } from "react";
-import styles from "./index.pcss";
+import styles from "./index.css";
 import classNames from "classnames";
 
 interface Props {

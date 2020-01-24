@@ -1,7 +1,7 @@
 import React, { FC, useReducer, MouseEvent } from "react";
 import { Game } from "../../interfaces/game";
 import { Fieldset } from "../Fieldset";
-import styles from "./index.pcss";
+import styles from "./index.css";
 import { Image } from "../Image";
 import { Checkbox } from "../Checkbox";
 import { Footer } from "../Footer";

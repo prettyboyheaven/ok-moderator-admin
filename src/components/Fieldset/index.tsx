@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./index.pcss";
+import styles from "./index.css";
 import { Button } from "../Button";
 
 interface Props {

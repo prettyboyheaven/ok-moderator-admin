@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Header } from "../components/Header";
 import { EditForm } from "../components/EditForm";
-import styles from "../styles/page.pcss";
+import styles from "../styles/page.css";
 import { getEndpoint } from "../../utils/getEndpoint";
 import axios from "axios";
 import { RouteComponentProps } from "react-router";

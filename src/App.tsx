@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import './styles/index.css';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Games } from "./pages/Games";
 import { Edit } from "./pages/Edit";

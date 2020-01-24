@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import classNames from "classnames";
-import styles from "./index.pcss";
+import styles from "./index.css";
 import { Button } from "../Button";
 import { Game } from "../../interfaces/game";
 import { Icon } from "../Icon";

@@ -1,11 +1,11 @@
-@value colors: '../../styles/variables/colorVariables.pcss';
+@value colors: '../../styles/variables/colorVariables.css';
 @value accent, accent-light, subordinate-light, secondary,  white from colors;
 
-@value spaces: '../../styles/variables/spaceVariables.pcss';
+@value spaces: '../../styles/variables/spaceVariables.css';
 @value space-xs, space-s, space-m from spaces;
 
 .button {
-  composes: mobile-button from "../../styles/fonts.pcss";
+  composes: mobile-button from "../../styles/fonts.css";
   padding: 0;
   color: inherit;
   border: none;
@@ -31,7 +31,7 @@
 .accent,
 .subordinate,
 .accentLight {
-  composes: xxl-border-radius from "../../styles/borders.pcss";
+  composes: xxl-border-radius from "../../styles/borders.css";
   border: none;
   padding: space-xs space-m;
 }

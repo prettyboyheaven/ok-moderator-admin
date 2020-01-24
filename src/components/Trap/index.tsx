@@ -1,7 +1,7 @@
 import React, { FC, useState } from "react";
 import classNames from "classnames";
 import { Trap as TrapType } from "../../types/trap";
-import styles from "./index.pcss";
+import styles from "./index.css";
 import { Fieldset } from "../Fieldset";
 import Textarea from "../Textarea";
 import { LabelingStrategy } from "../../types/labelingStrategy";

@@ -43,7 +43,7 @@ import {
   EYE,
   CROSS
 } from "../../constants/icons";
-import styles from "./index.pcss";
+import styles from "./index.css";
 
 interface Props {
   name: string;

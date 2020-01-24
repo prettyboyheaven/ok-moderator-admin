@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import styles from "./index.pcss";
+import styles from "./index.css";
 import ControlPanel from "../ControlPanel";
 import { Icon } from "../Icon";
 import { PRIORITY, ID, TYPE } from "../../constants/icons";

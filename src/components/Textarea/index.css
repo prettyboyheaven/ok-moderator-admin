@@ -1,13 +1,13 @@
-@value colors: '../../styles/variables/colorVariables.pcss';
+@value colors: '../../styles/variables/colorVariables.css';
 @value primary, subordinate-medium, subordinate from colors;
 
-@value spaces: '../../styles/variables/spaceVariables.pcss';
+@value spaces: '../../styles/variables/spaceVariables.css';
 @value space-s from spaces;
 
-@value fonts: '../../styles/variables/fontSizeVariables.pcss';
+@value fonts: '../../styles/variables/fontSizeVariables.css';
 @value font-xs, font-s from fonts;
 
-@value border-radiuses: '../../styles/variables/borderRadiusVariables.pcss';
+@value border-radiuses: '../../styles/variables/borderRadiusVariables.css';
 @value border-radius-xs from border-radiuses;
 
 .container {
@@ -15,7 +15,7 @@
 }
 
 .title {
-    composes: title from "../../styles/content.pcss";
+    composes: title from "../../styles/content.css";
 }
 
 .textarea {

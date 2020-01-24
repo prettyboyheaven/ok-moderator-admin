@@ -1,13 +1,13 @@
-@value border-radiuses: "../../styles/variables/borderRadiusVariables.pcss";
+@value border-radiuses: "../../styles/variables/borderRadiusVariables.css";
 @value border-radius-s from border-radiuses;
 
-@value colors: "../../styles/variables/colorVariables.pcss";
+@value colors: "../../styles/variables/colorVariables.css";
 @value subordinate-light from colors;
 
-@value spaces: "../../styles/variables/spaceVariables.pcss";
+@value spaces: "../../styles/variables/spaceVariables.css";
 @value space-xs, space-s, space-m, space-xl from spaces;
 
-@value media: "../../styles/variables/mediaVariables.pcss";
+@value media: "../../styles/variables/mediaVariables.css";
 @value large from media;
 
 .trap {
@@ -51,7 +51,7 @@
 }
 
 .title {
-  composes: title from "../../styles/content.pcss";
+  composes: title from "../../styles/content.css";
   padding-bottom: 0;
 }
 

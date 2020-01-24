@@ -1,6 +1,6 @@
 import React, { ChangeEvent, FC } from "react";
 import { Button } from "../Button";
-import styles from "./index.pcss";
+import styles from "./index.css";
 import { getEndpoint } from "../../../utils/getEndpoint";
 import axios from "axios";
 

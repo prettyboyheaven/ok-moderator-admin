@@ -1,10 +1,10 @@
-@value colors: "../../styles/variables/colorVariables.pcss";
+@value colors: "../../styles/variables/colorVariables.css";
 @value accent, accent-light, primary, subordinate, secondary from colors;
 
-@value spaces: "../../styles/variables/spaceVariables.pcss";
+@value spaces: "../../styles/variables/spaceVariables.css";
 @value space-xs, space-s, space-m, space-2xl from spaces;
 
-@value media: "../../styles/variables/mediaVariables.pcss";
+@value media: "../../styles/variables/mediaVariables.css";
 @value large from media;
 
 .game {
@@ -34,12 +34,12 @@
 }
 
 .title {
-  composes: title from "../../styles/content.pcss";
+  composes: title from "../../styles/content.css";
   color: primary;
 }
 
 .description {
-  composes: content from "../../styles/content.pcss";
+  composes: content from "../../styles/content.css";
   display: grid;
   grid-template-columns: 20px 1fr;
   color: secondary;
@@ -49,7 +49,7 @@
   width: 128px;
   height: 128px;
   object-fit: cover;
-  composes: m-border-radius from "../../styles/borders.pcss";
+  composes: m-border-radius from "../../styles/borders.css";
   grid-area: image;
 }
 
@@ -57,7 +57,7 @@
   position: relative;
   text-align: center;
   width: 100%;
-  composes: xl-border-radius from "../../styles/borders.pcss";
+  composes: xl-border-radius from "../../styles/borders.css";
   background-color: accent-light;
   padding: 6px 0;
   z-index: 1;
@@ -71,7 +71,7 @@
   top: 0;
   left: 0;
   background-color: accent;
-  composes: xl-border-radius from "../../styles/borders.pcss";
+  composes: xl-border-radius from "../../styles/borders.css";
   height: 100%;
   z-index: -1;
   max-width: 100%;
@@ -87,7 +87,7 @@
 }
 
 .time {
-  composes: content from "../../styles/content.pcss";
+  composes: content from "../../styles/content.css";
   line-height: 1.4;
   grid-column-start: 1;
   grid-column-end: 4;

@@ -1,10 +1,10 @@
-@value spaces: './variables/spaceVariables.pcss';
+@value spaces: './variables/spaceVariables.css';
 @value space-s, space-m from spaces;
 
-@value fonts: './variables/fontSizeVariables.pcss';
+@value fonts: './variables/fontSizeVariables.css';
 @value font-xs, font-s, font-m from fonts;
 
-@value colors: './variables/colorVariables.pcss';
+@value colors: './variables/colorVariables.css';
 @value primary from colors;
 
 .title {

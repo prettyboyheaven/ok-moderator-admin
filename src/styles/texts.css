@@ -1,0 +1,6 @@
+.subtitle {
+  composes: accent-darkest-color from "./colors.css";
+  composes: mobile-title from "./fonts.css";
+  font-weight: bold;
+  margin-bottom: 10px;
+}

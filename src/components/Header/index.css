@@ -1,7 +1,7 @@
-@value spaces: "../../styles/variables/spaceVariables.pcss";
+@value spaces: "../../styles/variables/spaceVariables.css";
 @value space-s, space-l, space-xl, space-3xl from spaces;
 
-@value colors: "../../styles/variables/colorVariables.pcss";
+@value colors: "../../styles/variables/colorVariables.css";
 @value accent from colors;
 
 .header {
@@ -21,7 +21,7 @@
 }
 
 .homeLink {
-  composes: link-large from "../../styles/content.pcss";
+  composes: link-large from "../../styles/content.css";
   text-decoration: none;
 }
 

@@ -3,8 +3,8 @@
   height: 128px;
   background-position: center;
   background-repeat: no-repeat;
-  composes: accent-lightest from "../../styles/colors.pcss";
-  composes: m-border-radius from "../../styles/borders.pcss";
+  composes: accent-lightest from "../../styles/colors.css";
+  composes: m-border-radius from "../../styles/borders.css";
   display: grid;
   align-items: center;
   justify-items: center;
@@ -13,6 +13,6 @@
 .image {
   width: 100%;
   height: 100%;
-  composes: m-border-radius from "../../styles/borders.pcss";
+  composes: m-border-radius from "../../styles/borders.css";
   object-fit: cover;
 }

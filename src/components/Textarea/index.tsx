@@ -1,5 +1,5 @@
 import React, { ChangeEvent, FC, useState } from "react";
-import styles from "./index.pcss";
+import styles from "./index.css";
 
 type Props = {
   maxLength: number;

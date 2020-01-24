@@ -1,4 +1,4 @@
-@value spaces: "../../styles/variables/spaceVariables.pcss";
+@value spaces: "../../styles/variables/spaceVariables.css";
 @value space-s, space-m from spaces;
 
 .footer {
@@ -8,7 +8,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  composes: default-white from "../../styles/colors.pcss";
+  composes: default-white from "../../styles/colors.css";
   display: grid;
   grid-gap: space-s;
   grid-auto-flow: column;

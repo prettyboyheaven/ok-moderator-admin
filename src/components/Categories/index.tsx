@@ -1,5 +1,5 @@
 import React, { FC, MouseEvent } from "react";
-import styles from "./index.pcss";
+import styles from "./index.css";
 import { Checkbox } from "../Checkbox";
 import { Button } from "../Button";
 import { Icon } from "../Icon";

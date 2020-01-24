@@ -1,0 +1,7 @@
+.icon {
+  composes: icon-default from "../../styles/colors.css";
+}
+
+.iconDarkest {
+  composes: icon-darkest from "../../styles/colors.css";
+}
